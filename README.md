@@ -50,7 +50,7 @@ Claude then does the computer work itself — checks/installs Pandoc, places the
 
 **About to submit a paper?** [docs/08](docs/08-pre-submission-review.md) is the pre-submission review of **your own manuscript**: page-anchored findings and recomputed statistics, a triage list you adjudicate before anything is written up, a prioritized revision plan with a 0–100 estimate, and a compliance check against the journal's current author instructions.
 
-**How it all fits together:** see [docs/flowchart.html](docs/flowchart.html) — note GitHub shows HTML files as code; after downloading the ZIP, just **double-click the file** to open it in your browser (printable).
+**How it all fits together:** see [docs/flowchart.md](docs/flowchart.md) — the diagrams render right here on GitHub. A designed, **printable** version is [docs/flowchart.html](docs/flowchart.html) (GitHub shows HTML as code — after downloading the ZIP, just double-click that file to open it in your browser).
 
 ## Changing the citation style (APA 7th is just the default)
 
