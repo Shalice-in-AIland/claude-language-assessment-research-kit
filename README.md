@@ -19,13 +19,14 @@
 
 **You write `[@cheng2026]` in a plain-text draft. You get a Word document with "(Cheng et al., 2026)" formatted perfectly, plus a matched, alphabetised reference list — and a typo'd citation can't hide.** No more hand-formatting citations, no more reference lists that drift out of sync with the text.
 
-This repo packages a tested workflow built from three free tools **plus an AI operator that runs it for you**, with a plain-language guide written for people who have **never used any of them**:
+This repo packages a tested workflow built from free tools **plus an AI operator that runs it for you**, with a plain-language guide written for people who have **never used any of them**:
 
 | Tool | Think of it as |
 |---|---|
 | [Zotero](https://www.zotero.org) | your **library catalogue** — drop a PDF in, it fetches the details |
 | [Better BibTeX](https://retorque.re/zotero-better-bibtex/) (a Zotero plugin) | the **ID-card printer** — every paper gets a permanent citekey like `cheng2026` |
 | [Pandoc](https://pandoc.org) | the **typesetter** — turns your draft + IDs into a finished Word document |
+| [Obsidian](https://obsidian.md) *(optional)* | your **writing desk** — a comfortable home for the Markdown drafts you cite in; plugs into the pipeline with zero changes ([docs/06](docs/06-obsidian-editor.md)) |
 | [Claude Code](https://claude.com/claude-code) | the **built-in operator** — walks you through setup, runs the renders, reads every warning, audits your library |
 
 Claude Code runs the fiddly parts — terminals, installs, render commands, warning-reading — so you never have to figure out Pandoc or a command line. The few things it *can't* do for you (a handful of clicks inside the Zotero app) it walks you through one checkpoint at a time, with screenshots.
