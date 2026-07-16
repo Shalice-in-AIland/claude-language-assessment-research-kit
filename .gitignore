@@ -1,0 +1,8 @@
+# Maintainer-private records — never published (see CLAUDE.md)
+_private/
+# OS/editor noise
+.DS_Store
+__pycache__/
+*.pyc
+# Per-machine Claude Code settings (personal permissions — never shared)
+.claude/settings.local.json

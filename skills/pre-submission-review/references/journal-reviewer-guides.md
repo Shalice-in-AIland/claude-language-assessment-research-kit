@@ -1,0 +1,41 @@
+# Journal reviewer guides — language assessment & CALL field
+
+*What major language-assessment/CALL venues tell their reviewers to look for — so a manuscript can be evaluated through the eyes of the reviewers it will actually meet. Extracted verbatim from official sources, **last verified 2026-07-15**; pages move, so re-verify when stakes are high. Use at Step 0: once the target journal is identified, read its section before evaluating. For journals not listed, fetch the journal's reviewer-facing guidance on demand and append a section.*
+
+## Cross-journal quick reference
+
+| Journal | Publisher | Review model | Recommendation terms |
+|---|---|---|---|
+| Assessing Writing | Elsevier | double-anonymized, ≥2 reviewers | Reject / Accept without revision / Revise (major–minor) |
+| System | Elsevier | double-anonymized, ≥2 | same |
+| Language Assessment Quarterly | T&F | **journal's own pages conflict** (single-anon vs ≥2 anon) — follow the invitation letter | Accept / Minor / Major / Reject (T&F standard) |
+| Computer Assisted Language Learning | T&F | double-anonymized, ≥2 | same |
+| Language Learning & Technology | NFLRC (indep., OA) | desk screen (~8–14 days) → double-blind ≥2 (~2–3 months) | accept / resubmit for review / revisions required / decline |
+| Language Testing | Sage | double-blind, normally 3 reviewers | reject / revise-and-resubmit / accept with minor amendments / accept forthwith |
+| RSAL | T&F | per journal + **SMART checklist** | T&F standard |
+
+## Publisher blocks
+
+### Elsevier (Assessing Writing, System)
+Tone canon — [How to conduct a review](https://www.elsevier.com/reviewers/how-to-review): *"Your comments should be courteous and constructive, and should not include any ad hominem remarks"* · *"Keep your comments strictly factual and don't speculate on the motives of the author(s)"* · open with a short summary of the article ("shows the editor you have read and understood the research") · *"short, clearly-defined paragraphs"* · *"explain and support your judgement"* · **don't**: *"Feel the need to comment on the spelling, grammar or layout"*; make ad-hominem comments; dismiss conflicting viewpoints; suggest self-citations without genuine scientific reason.
+
+### Taylor & Francis (LAQ, CALL, RSAL)
+Report purpose & tone — [Peer review checklist](https://editorresources.taylorandfrancis.com/reviewer-guidelines/review-checklist/) + [ethical guidelines](https://editorresources.taylorandfrancis.com/reviewer-guidelines/): *"begin with a brief summary of the work and the main findings"* · *"direct your criticism towards the work carried out and avoid comments that may be interpreted as personal criticism"* · *"Comments should be carefully worded so the author understands what actions they need to take"* · *"Try to write simply and avoid rhetorical flourishes"* · *"avoid generalized or vague statements"* · *"It's not the reviewer's job to edit the paper for spelling, grammar"* · *"polite and constructive, even if you have serious concerns"* · a report should be *"constructive, comprehensive, evidenced, and appropriately substantial"* · *"must avoid making statements … which might be interpreted as questioning any person's reputation"* · **"Reviewers must prepare their report by themselves, unless they have permission from the journal to involve another person."**
+
+### Sage (Language Testing)
+Criteria — submission guidelines "Reviewer Guidelines": articles *"must be original and must make a significant contribution to existing knowledge"*, via *"a competent and critical review of the relevant literature"*; research articles *"based on new data collected and analysed in a rigorous and well-designed investigation."* COI: a reviewer who recognizes the author *"should refuse to take part."* Reviews circulated to all reviewers post-decision (calibration culture).
+Resources: **three exemplar peer-review reports** (incl. a systematic review, with authors' responses and decision letters across rounds) on the reviewer-resources page · [LT Guidelines for Systematic Reviews (PDF)](https://journals.sagepub.com/pb-assets/cmscontent/ltj/LT%20Guidelines%20for%20Systematic%20Reviews_October_3_24-1739525675667.pdf) · Test-Review reviewer checklist (accuracy/fairness; coverage incl. ILTA Code of Ethics alignment; evidence; organization; contribution).
+
+## Journal-specific notes
+
+**Assessing Writing** — article types incl. review essays; abstract ≤250 words; no reviewer criteria beyond publisher standard.
+
+**System** — manuscripts ≤8,000 words (excl. references/appendices); *"requires articles to have a sound theoretical base and a visible practical application"*; research syntheses are **proposal-gated** (*"unsolicited review articles will be rejected"*); book reviews ≤1,500 words, *"less formulaic, more personalised perspectives."*
+
+**Language Assessment Quarterly** — types: Research Articles (8,000 w, 100-word abstract), Commentary, Book Reviews (2,000–2,500), **Test Reviews (4,000)**, Interviews, Practical Advice; American spelling; ~13% acceptance. **Flag: its two official pages state different review models** — single-anonymized ("one independent, anonymous expert referee", instructions page 2026) vs "at least two referees" (about page); trust the invitation email.
+
+**Computer Assisted Language Learning** — ≤8,000 words *inclusive of references*; ~11% acceptance; **de facto reviewer criteria live in the Aims & Scope**: submissions must *"show a rigorous research method informed by a strong theoretical underpinning"*, *"explicitly build on previous research … especially … CALL-related journals"*, *"feature an experimental or observational method, and not be just surveys, pilot studies, or systematic reviews"*, *"display a clear logic behind the use of technology"*, and *"transcend the solely local aspect of the research context."* Elaborated in Colpaert (2020), CALL 33(7) editorial.
+
+**Language Learning & Technology** — free OA, no APCs, CC BY-NC-ND; ~8% acceptance with heavy desk-screening (2024: 607 submissions, 72 to external review). Scope gate: *"Prioritized are articles that provide and discuss data and analysis of language learning or language teaching outcomes"*; software descriptions and *"small or limited surveys without … systematic empirical data"* are excluded. **Quantitative review criteria** ([Points of Advice](https://www.lltjournal.org/post/12/)): *"The sampling process is at the heart of quantitative research and will be checked for suitability"* · *"Effect sizes must always be reported, even for non-significant results and even for post-hoc comparisons"* · inferential testing required unless results are explicitly context-only; manuscripts follow **APA Journal Article Reporting Standards** ([Research Guidelines](https://www.lltjournal.org/research-guidelines/)); the journal points reviewers of specific methods to Hancock et al. (2019), *The Reviewer's Guide to Quantitative Methods in the Social Sciences*. Integrity: simultaneous submission or self-plagiarism → 2-year submission ban. Anonymization convention: authors self-cite in third person (not "Author"). Decision terms as in the table.
+
+**RSAL** — reviewers are *"encouraged … to refer to the items"* of the **SMART checklist** (Preparation P1–P4 · Method M1–M7 · Reporting; four dimensions: Systematicity, Transparency, Accessibility, Reflexivity) *"when providing feedback on the methodological rigour"*, and may attach the checklist to their report. The checklist is distributed by the journal (see its site); rationale and full tool: Chong (2025), doi:10.1080/29984475.2025.2456880. Distinctives beyond this skill's synthesis module (in SKILL.md): title registration/protocol + deviations; RS-type consistency with applied-linguistics typologies (Chong & Plonsky 2024); team roles/credentials + non-academic stakeholders; **min. 3 databases + rationale**; documented process issues + solutions (Reflexivity); software/automation disclosure; Accessibility items (graphical/lay abstract, non-academic relevance); CRediT; asterisked included studies; instruments/data availability.

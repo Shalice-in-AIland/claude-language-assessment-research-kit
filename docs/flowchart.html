@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CLAS — how the toolkit fits together</title>
+<style>
+  :root{
+    --bg:#f7f8fa; --card:#ffffff; --ink:#1c2230; --muted:#5b6472; --line:#e3e7ee;
+    --human:#8a5cf6; --auto:#2e9e6b; --ai:#3b82f6; --warn:#e0952b;
+    --spine:#eef2f8; --shadow:0 1px 3px rgba(20,30,60,.08);
+  }
+  @media (prefers-color-scheme:dark){
+    :root{--bg:#0f1420;--card:#171d2b;--ink:#e8ecf4;--muted:#9aa6ba;--line:#28303f;
+      --human:#a78bfa;--auto:#3bbd83;--ai:#5b9bff;--warn:#f0ad4e;--spine:#141a27;--shadow:none;}
+  }
+  :root[data-theme="light"]{--bg:#f7f8fa;--card:#fff;--ink:#1c2230;--muted:#5b6472;--line:#e3e7ee;--spine:#eef2f8;--shadow:0 1px 3px rgba(20,30,60,.08);}
+  :root[data-theme="dark"]{--bg:#0f1420;--card:#171d2b;--ink:#e8ecf4;--muted:#9aa6ba;--line:#28303f;--spine:#141a27;--shadow:none;}
+  *{box-sizing:border-box}
+  body{margin:0 auto;background:var(--bg);color:var(--ink);max-width:1060px;padding:26px;
+    font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+  h1{font-size:22px;margin:0 0 4px} .sub{color:var(--muted);font-size:13.5px;margin:0 0 22px}
+  h2{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:24px 0 10px}
+  .lane-tags{display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px;margin-bottom:14px}
+  .tag{display:inline-flex;align-items:center;gap:6px;color:var(--muted)}
+  .dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+  .flow{display:flex;gap:0;flex-wrap:wrap;align-items:stretch}
+  .step{flex:1 1 150px;min-width:150px;background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:13px 14px;box-shadow:var(--shadow);position:relative;margin:0 18px 14px 0}
+  .step:after{content:"→";position:absolute;right:-16px;top:42%;color:var(--muted);font-size:17px}
+  .step.last:after{content:""}
+  .step .n{font-size:11px;font-weight:700;letter-spacing:.05em;color:var(--muted)}
+  .step .t{font-weight:650;font-size:14.5px;margin:2px 0 6px}
+  .step .d{font-size:12.5px;color:var(--muted)}
+  .who{display:inline-block;font-size:10.5px;font-weight:700;padding:1.5px 8px;border-radius:20px;margin-top:8px}
+  .w-h{background:color-mix(in srgb,var(--human) 16%,transparent);color:var(--human)}
+  .w-a{background:color-mix(in srgb,var(--auto) 16%,transparent);color:var(--auto)}
+  .w-b{background:color-mix(in srgb,var(--warn) 18%,transparent);color:var(--warn)}
+  .w-ai{background:color-mix(in srgb,var(--ai) 16%,transparent);color:var(--ai)}
+  code{background:var(--spine);border:1px solid var(--line);border-radius:5px;padding:0 5px;font-size:12px}
+  .note{color:var(--muted);font-size:12.5px;margin:-4px 0 6px}
+  .band{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--ai);border-radius:12px;
+    padding:14px 16px;box-shadow:var(--shadow)}
+  .band .t{font-weight:650;margin-bottom:6px}
+  .band ul{margin:6px 0 0;padding-left:18px;font-size:13px;color:var(--muted)}
+  .band li{margin:3px 0}
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:720px){.split{grid-template-columns:1fr}}
+  .mini{background:var(--spine);border:1px solid var(--line);border-radius:10px;padding:11px 13px;font-size:13px}
+  .mini b{display:block;margin-bottom:4px}
+  .foot{color:var(--muted);font-size:12px;margin-top:22px;border-top:1px solid var(--line);padding-top:10px}
+  @media print{body{max-width:none} .step{break-inside:avoid} .band,.mini{break-inside:avoid}}
+</style>
+</head>
+<body>
+  <h1>CLAS — how the toolkit fits together</h1>
+  <p class="sub">Six skills stationed along one research lifecycle: you keep every judgement call, Claude operates the machinery, and nothing is written without your yes. (Built on Zotero + Better BibTeX + Pandoc + Claude Code; style = APA 7th or any journal's.)</p>
+
+  <div class="lane-tags">
+    <span class="tag"><span class="dot" style="background:var(--human)"></span><b>You</b>&nbsp;— judgement</span>
+    <span class="tag"><span class="dot" style="background:var(--ai)"></span><b>Claude</b>&nbsp;— drafts, checks, audits; never invents</span>
+    <span class="tag"><span class="dot" style="background:var(--auto)"></span><b>Automatic</b>&nbsp;— tools</span>
+    <span class="tag"><span class="dot" style="background:var(--warn)"></span><b>Built-in check</b></span>
+  </div>
+
+  <h2>The research lifecycle — where each skill works</h2>
+  <div class="flow">
+    <div class="step">
+      <div class="n">1 · DISCOVER</div>
+      <div class="t"><code>literature-radar</code></div>
+      <div class="d">Scheduled sweeps find what's new; strict dedup against your corpus; you open a pre-screened digest, "needs your attention" first.</div>
+      <span class="who w-ai">CLAUDE sweeps</span> <span class="who w-h">YOU approve keepers</span>
+    </div>
+    <div class="step">
+      <div class="n">2 · REVIEW</div>
+      <div class="t"><code>literature-review</code></div>
+      <div class="d">Approval-gated triage into your living matrix — the source of truth — then generated Obsidian notes, theme hubs, and a dashboard.</div>
+      <span class="who w-h">YOU rule tier &amp; ★KEY</span> <span class="who w-ai">CLAUDE drafts &amp; projects</span>
+    </div>
+    <div class="step">
+      <div class="n">3 · WRITE</div>
+      <div class="t"><code>zotero-citations</code> · <code>writing-polish</code></div>
+      <div class="d">Cite by <code>[@key]</code>, render to Word with a matched reference list; polish accuracy directly, style as numbered proposals you accept one at a time.</div>
+      <span class="who w-h">YOU write &amp; accept</span> <span class="who w-a">AUTOMATIC render</span>
+    </div>
+    <div class="step">
+      <div class="n">4 · CHECK</div>
+      <div class="t"><code>citation-integrity</code></div>
+      <div class="d">Every DOI resolves <i>and matches</i>; retraction sweep; preprints checked for a published version — flagged for your fix in Zotero, never "corrected" silently.</div>
+      <span class="who w-b">BUILT-IN CHECKS</span> <span class="who w-h">YOU fix in Zotero</span>
+    </div>
+    <div class="step">
+      <div class="n">5 · EVALUATE</div>
+      <div class="t"><code>pre-submission-review</code></div>
+      <div class="d">Evidence ledger with recomputed numbers → your triage gate → revision plan, 0–100 estimate, readiness verdict, journal compliance.</div>
+      <span class="who w-ai">CLAUDE verifies</span> <span class="who w-h">YOU adjudicate</span>
+    </div>
+    <div class="step last">
+      <div class="n">6 · SUBMIT</div>
+      <div class="t">…and revise</div>
+      <div class="d">Submit with the venue's checklist and your AI-use declaration. Revisions loop back to 5: resolution audit, abstract sync check, re-score the trajectory.</div>
+      <span class="who w-h">YOURS</span>
+    </div>
+  </div>
+  <p class="note">Every station also works alone — check citations without a matrix, review a draft without a radar, polish a paragraph any time. The lifecycle is the map, not a required march.</p>
+
+  <h2>The citation pipeline underneath (set up once — it feeds every stage)</h2>
+  <div class="flow">
+    <div class="step">
+      <div class="n">1 · COLLECT</div>
+      <div class="t">Drop the PDF into Zotero</div>
+      <div class="d">Details auto-fill (authors, year, journal, DOI). You sanity-check them.</div>
+      <span class="who w-h">YOU pick the source</span> <span class="who w-a">tools fetch metadata</span>
+    </div>
+    <div class="step">
+      <div class="n">2 · KEY</div>
+      <div class="t">A permanent ID card</div>
+      <div class="d">Better BibTeX mints a stable citekey, e.g. <code>cheng2026</code>. Pin it so it never changes.</div>
+      <span class="who w-a">AUTOMATIC</span>
+    </div>
+    <div class="step">
+      <div class="n">3 · EXPORT</div>
+      <div class="t">Library file stays fresh</div>
+      <div class="d">"Keep updated" export writes <code>library.bib</code> straight into the project.</div>
+      <span class="who w-a">AUTOMATIC</span>
+    </div>
+    <div class="step">
+      <div class="n">4 · WRITE</div>
+      <div class="t">Cite by ID in plain text</div>
+      <div class="d">In the Markdown draft: <code>[@cheng2026]</code> — or <code>@cheng2026 found…</code></div>
+      <span class="who w-h">YOU choose which paper backs each claim</span>
+    </div>
+    <div class="step">
+      <div class="n">5 · RENDER</div>
+      <div class="t">One command → Word</div>
+      <div class="d"><code>bash render.sh Draft.md</code> → in-text citations + a matched, alphabetised reference list.</div>
+      <span class="who w-a">AUTOMATIC (Pandoc + style file)</span>
+    </div>
+    <div class="step last">
+      <div class="n">6 · CHECK</div>
+      <div class="t">Orphans can't hide</div>
+      <div class="d">Any unknown key prints as <code>(key?)</code> + a warning — every mismatch surfaces before submission.</div>
+      <span class="who w-b">BUILT-IN CHECK</span>
+    </div>
+  </div>
+
+  <h2>Claude Code — the built-in operator</h2>
+  <div class="band">
+    <div class="t">Claude runs the toolkit with you — bookkeeping and vigilance, never invention <span style="font-weight:400;color:var(--muted)">(docs 00–08 = the manual Claude follows; every step is inspectable)</span></div>
+    <ul>
+      <li><b>Set-up:</b> installs and wires the tools per project (no-admin setups included), copies the starter-kit, verifies the sample render — then walks you through the few Zotero clicks it can't do for you.</li>
+      <li><b>Discovery &amp; review:</b> radar sweeps, dedup, drafted triage rows and generated vault views — every judgement call queued for your approval, never written silently.</li>
+      <li><b>Render &amp; report:</b> runs the renders, reads every warning, explains orphans in plain language.</li>
+      <li><b>Verification:</b> DOI resolve-and-match, retractions, preprint→version-of-record; manuscript evidence ledgers with recomputed statistics and page anchors; then a fresh agent re-checks the review itself before you see it.</li>
+      <li><b>Second opinions (optional — your key, your call, per run):</b> a different vendor's model re-judges review rows or the whole manuscript evaluation, propose-only; pinned models are re-verified on a schedule so a retired ID never silently breaks an audit.</li>
+    </ul>
+  </div>
+
+  <h2>The standing rules</h2>
+  <div class="split">
+    <div class="mini"><b>Judgement stays human</b>What to read, cite, tier, and claim is yours; approval gates sit before every write, and interpretation questions are routed to you, never settled by a model.</div>
+    <div class="mini"><b>Flag, never guess</b>Nothing is invented, "remembered", or silently corrected — the 16-rule integrity charter (docs/04) is the single source, and fixes are proposals you apply in Zotero.</div>
+    <div class="mini"><b>Errors surface, they don't lurk</b><code>(key?)</code> warnings at every render; PASS/FAIL ledgers on every checkable number; dashboards that count what changed.</div>
+    <div class="mini"><b>One reading is never trusted alone</b>Fresh-agent verification comes standard; optional cross-vendor audits show you the spread between two independent reads.</div>
+  </div>
+
+  <p class="foot">Companion: <i>docs/00–08</i> + the <i>starter-kit/</i> folder (copy it into any project). Last verified July 2026.</p>
+<script>
+  (function(){var r=document.documentElement;try{var t=localStorage.getItem('theme');if(t)r.setAttribute('data-theme',t);}catch(e){}})();
+</script>
+</body>
+</html>
