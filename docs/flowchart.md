@@ -10,10 +10,10 @@ Seven skills along one research lifecycle — six stations plus the maintenance 
 flowchart LR
     A["<b>1 · DISCOVER</b><br/>literature-radar<br/>🤖 scheduled sweeps, strict dedup<br/>👤 you approve keepers"]
     B["<b>2 · REVIEW</b><br/>literature-review<br/>🤖 drafts triage + Obsidian views<br/>👤 you rule tier & ★KEY"]
-    C["<b>3 · WRITE</b><br/>zotero-citations · writing-polish<br/>👤 you write & accept proposals<br/>⚙️ render to Word"]
-    D["<b>4 · CHECK</b><br/>citation-integrity<br/>⚠️ DOI resolve+match · retractions · preprint→VoR<br/>👤 you fix in Zotero"]
+    C["<b>3 · WRITE</b><br/>zotero-citations · writing-polish<br/>🤖 renders to Word & proposes polish<br/>👤 you write & accept each edit"]
+    D["<b>4 · CHECK</b><br/>citation-integrity<br/>🤖 runs the checks: DOI resolve+match · retractions · preprint→VoR<br/>👤 you fix in Zotero"]
     E["<b>5 · EVALUATE</b><br/>pre-submission-review<br/>🤖 evidence ledger, recomputed numbers<br/>👤 you adjudicate the triage"]
-    F["<b>6 · SUBMIT</b><br/>venue checklist +<br/>your AI-use declaration 👤"]
+    F["<b>6 · SUBMIT</b><br/>👤 you submit & declare (venue checklist ready)<br/>🤖 Claude stands by for the revision rounds"]
     A --> B --> C --> D --> E --> F
     F -. "revision rounds: resolution audit · sync check · re-score" .-> E
     M["🛠 <b>model-radar</b> — maintenance watch<br/>are the pinned audit models still alive & current?<br/>⚙️ monthly · propose-only log"]
