@@ -16,6 +16,14 @@ url: "https://github.com/Shalice-in-AIland/claude-language-assessment-research-k
 license: MIT
 version: 1.0.0
 date-released: "2026-07-17"
+doi: "10.5281/zenodo.21411273"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.21411273"
+    description: "Concept DOI — cites all versions; resolves to the latest."
+  - type: doi
+    value: "10.5281/zenodo.21411275"
+    description: "Version DOI for v1.0.0."
 keywords:
   - language assessment
   - applied linguistics
