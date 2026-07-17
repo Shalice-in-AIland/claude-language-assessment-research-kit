@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """matrix_to_vault.py — project a literature-review matrix into Obsidian-ready notes.
 
-Part of CLAS (claude-language-assessment-skills). Standard library only — no installs.
+Part of CLARK (claude-language-assessment-research-kit). Standard library only — no installs.
 
 Reads a review matrix (.xlsx or .csv) whose header row carries the core columns
 (see review-conventions-template.md) and generates, under --notes-dir:
@@ -37,6 +37,9 @@ import zipfile
 
 M = "{http://schemas.openxmlformats.org/spreadsheetml/2006/main}"
 R = "{http://schemas.openxmlformats.org/officeDocument/2006/relationships}"
+# Historic marker string from the toolkit's original name (CLAS) — NEVER rename it:
+# existing vaults' generated notes carry this exact string, and a mismatch would make
+# regeneration skip them all as hand-edited.
 MARKER = "generated-by: clas-literature-review"
 
 # ---------- matrix readers ----------

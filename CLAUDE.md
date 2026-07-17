@@ -1,4 +1,4 @@
-# CLAUDE.md — Claude Language Assessment Skills (CLAS)
+# CLAUDE.md — Claude Language Assessment Research Kit (CLARK)
 
 **What this repo is.** A public, field-scoped toolkit of Claude Code skills for researchers in **language assessment / applied linguistics / EAP writing research**. Each skill packages a complete, integrity-first workflow; Claude operates the machinery, the scholar keeps the judgement calls. Maintainer: Sha Liu. License: MIT (except `starter-kit/style.csl`, CSL project, CC BY-SA — noted in LICENSE).
 
@@ -10,7 +10,7 @@
 - `skills/pre-submission-review/` — evidence-anchored evaluation of the USER'S OWN manuscript only: two-pass evidence discipline (ledger with PASS/FAIL recomputation, claim–warrant checks, triage gate), revision plan + 0–100 estimate with readiness verdict, live author-instructions compliance, fresh-agent verification, optional cross-vendor audit (`starter-kit/manuscript_audit.py`, gated by `--confirm-send`). `references/` = the two article-type criteria modules (built from publisher/journal-provided reviewer material) + what major venues tell their reviewers to look for.
 - `skills/writing-polish/` — five-dimension polish of the user's own prose (accuracy corrected directly with a change log; everything stylistic propose-only), built for multilingual and early-career academics.
 - `docs/00–08` — the user-facing operator's manual (project wiring + session hygiene, setup, daily use, troubleshooting, the integrity charter, the Zotero-MCP upgrade, Obsidian-as-editor, the living literature review, the pre-submission review) + the flowchart twins (`flowchart.md` — Mermaid, renders on GitHub; `flowchart.html` — styled, printable; keep them in sync) + `images/`.
-- `starter-kit/` — the copy-into-your-project kit: `render.sh`/`render.bat`, `style.csl` (APA 7th default, swappable), sample `library.bib` + draft, and the stdlib-only Python tools (`resolve_check` · `check_retractions` · `vor_check` · `pdf_probe` · `matrix_to_vault` · `review_audit` · `manuscript_audit` · `clas_doctor`).
+- `starter-kit/` — the copy-into-your-project kit: `render.sh`/`render.bat`, `style.csl` (APA 7th default, swappable), sample `library.bib` + draft, and the stdlib-only Python tools (`resolve_check` · `check_retractions` · `vor_check` · `pdf_probe` · `matrix_to_vault` · `review_audit` · `manuscript_audit` · `clark_doctor`).
 - `_private/` — the maintainer's records, git-ignored, never published. **Maintainer sessions: if `_private/CLAUDE-maintainer-log.md` exists, read it at session start** — it carries the working history, state, and roadmap. (In a downloaded copy of this repo that file doesn't exist; ignore this line.)
 
 ## Non-negotiable design rules
@@ -30,8 +30,8 @@
 - Validation accounts in docs stay generic: real projects and test materials are never identifiable in this repo.
 
 ## Positioning (verified 2026-07-13, point-in-time)
-Benchmarked against: ARS (`Imbad0202/academic-research-skills`, ~37.7k★, CC BY-NC — ideas only, never code), `Galaxy-Dawn/claude-scholar` (~4.6k★, MIT), `54yyyu/zotero-mcp` (~4.3k★, MIT — the MCP server the Level-2 upgrade uses). CLAS's niche (found open): the focused **render + citation-integrity layer, novice-first, field-scoped** — none of the big generic pipelines renders *and* enforces a retraction-checked integrity charter. CLAS *consumes* generic infrastructure (zotero-mcp, Pandoc) rather than forking it.
+Benchmarked against: ARS (`Imbad0202/academic-research-skills`, ~37.7k★, CC BY-NC — ideas only, never code), `Galaxy-Dawn/claude-scholar` (~4.6k★, MIT), `54yyyu/zotero-mcp` (~4.3k★, MIT — the MCP server the Level-2 upgrade uses). CLARK's niche (found open): the focused **render + citation-integrity layer, novice-first, field-scoped** — none of the big generic pipelines renders *and* enforces a retraction-checked integrity charter. CLARK *consumes* generic infrastructure (zotero-mcp, Pandoc) rather than forking it.
 
 ## Provenance & sweep discipline
-- External ideas are adopted with credit and license respect: MIT projects may be consumed or adapted with attribution; CC BY-NC projects are ideas-only; every CLAS script is written fresh, standard-library-only.
+- External ideas are adopted with credit and license respect: MIT projects may be consumed or adapted with attribution; CC BY-NC projects are ideas-only; every CLARK script is written fresh, standard-library-only.
 - Before any public push: sweep the tree for credentials, local paths, personal names/emails, personal-project content, and private-folder references. `_private/` and `.claude/settings.local.json` stay git-ignored.

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """review_audit.py — independent second-model audit of a literature-review matrix.
 
-Part of CLAS (claude-language-assessment-skills). Standard library only — no installs.
+Part of CLARK (claude-language-assessment-research-kit). Standard library only — no installs.
 
 Sends each matrix row (metadata only — no PDFs) to a SECOND, cross-vendor model,
 which re-judges the row against the project's OWN rules (the review-conventions

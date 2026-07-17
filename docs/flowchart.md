@@ -1,4 +1,4 @@
-# CLAS — how the toolkit fits together
+# CLARK — how the toolkit fits together
 
 Six skills stationed along one research lifecycle: **you keep every judgement call, Claude operates the machinery, and nothing is written without your yes.** (Built on Zotero + Better BibTeX + Pandoc + Claude Code; style = APA 7th or any journal's.)
 

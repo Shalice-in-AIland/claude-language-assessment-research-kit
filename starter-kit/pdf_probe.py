@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """pdf_probe.py — deterministic "can this PDF be read, and how?" check.
 
-Part of CLAS (claude-language-assessment-skills). Standard library only; uses
+Part of CLARK (claude-language-assessment-research-kit). Standard library only; uses
 PyMuPDF automatically for a more precise per-page report when it happens to be
 installed (never required).
 

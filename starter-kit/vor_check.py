@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """vor_check.py — find published versions-of-record for the preprints in a bibliography.
 
-Part of CLAS (claude-language-assessment-skills). Standard library only — no installs.
+Part of CLARK (claude-language-assessment-research-kit). Standard library only — no installs.
 
 For every PREPRINT-typed entry in a .bib (entry type unpublished/misc/online/preprint, or an
 arXiv marker), queries Crossref for a journal-article whose title closely matches, then

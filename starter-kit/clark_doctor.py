@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""clas_doctor.py — one-command health check for a CLAS setup.
+"""clark_doctor.py — one-command health check for a CLARK setup.
 
-Part of CLAS (claude-language-assessment-skills). Standard library only.
+Part of CLARK (claude-language-assessment-research-kit). Standard library only.
 
 Checks, without changing anything:
   · Python version (3.8+)
@@ -14,7 +14,7 @@ Checks, without changing anything:
     set in the environment (presence only — values are never read or printed),
     and which model pins are declared
 
-Usage:  python3 clas_doctor.py [--project <dir>] [--conventions <file>]
+Usage:  python3 clark_doctor.py [--project <dir>] [--conventions <file>]
 Exit codes: 0 = all required checks pass · 2 = something needs attention.
 """
 import importlib.util

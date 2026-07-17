@@ -1,4 +1,4 @@
-# Claude Language Assessment Skills (CLAS)
+# Claude Language Assessment Research Kit (CLARK)
 
 **Research skills for the language-assessment and applied-linguistics community, operated by Claude Code.** Each skill packages a complete, integrity-first research workflow — Claude runs the machinery; the scholarly judgement stays yours.
 
@@ -69,7 +69,7 @@ Your draft never changes: `[@cheng2026]` stays `[@cheng2026]`; only the style fi
 
 The integrity pass is also a **standalone skill** — [`skills/citation-integrity/`](skills/citation-integrity/SKILL.md) — callable on its own ("check my citations") even without the render pipeline. It runs three library checks in `starter-kit/`: `check_retractions.py` (Crossref / Retraction Watch), `resolve_check.py` (does every DOI *resolve* to a real record, and does that record *match* your entry — catching dead DOIs and mis-attached / "Frankenstein" references), and `vor_check.py` (which of your cited preprints now have a published version of record). All are standard-library Python, no install.
 
-To use the skills in *another* project of yours: copy this **whole repo folder** into that project (keeping it together — the skills reference the shared `docs/` and `starter-kit/` folders by relative path, so separating a skill folder from the repo breaks it), then invoke by path: *"Read \<folder\>/skills/zotero-citations/SKILL.md and set up automatic citations for me."* If you place it under the project's `.claude/skills/`, same rule: the repo folder stays intact. (`.claude` is a *hidden* folder; create it if it doesn't exist — Mac Finder shows hidden files with **Cmd+Shift+.**; Windows Explorer: View → Show → Hidden items.) **Full setup patterns and the session habits that keep public tools and private research apart: [docs/00](docs/00-using-clas-in-your-project.md).**
+To use the skills in *another* project of yours: copy this **whole repo folder** into that project (keeping it together — the skills reference the shared `docs/` and `starter-kit/` folders by relative path, so separating a skill folder from the repo breaks it), then invoke by path: *"Read \<folder\>/skills/zotero-citations/SKILL.md and set up automatic citations for me."* If you place it under the project's `.claude/skills/`, same rule: the repo folder stays intact. (`.claude` is a *hidden* folder; create it if it doesn't exist — Mac Finder shows hidden files with **Cmd+Shift+.**; Windows Explorer: View → Show → Hidden items.) **Full setup patterns and the session habits that keep public tools and private research apart: [docs/00](docs/00-using-clark-in-your-project.md).**
 
 ## Requirements & versions
 
@@ -78,7 +78,7 @@ To use the skills in *another* project of yours: copy this **whole repo folder**
 - **Claude Code** — the operator (subscription or API). *(The underlying pipeline is all free software; the manual in docs/ covers every step if you ever work without Claude.)*
 - Any plain-text editor for your draft (Markdown) — including [Obsidian](https://obsidian.md) as a comfortable writing home ([docs/06](docs/06-obsidian-editor.md))
 
-Unsure whether your setup is complete? Ask Claude to **"run the CLAS doctor"** — one command (`starter-kit/clas_doctor.py`) checks everything in this list, your project's files, and whether your audit keys are in place, without changing anything.
+Unsure whether your setup is complete? Ask Claude to **"run the CLARK doctor"** — one command (`starter-kit/clark_doctor.py`) checks everything in this list, your project's files, and whether your audit keys are in place, without changing anything.
 
 **Last verified: July 2026** against Zotero 9, current Better BibTeX, Pandoc 3.10. These tools are open-source and update regularly — a menu may move, but the concepts don't change; each guide step links the official docs as the always-current source.
 

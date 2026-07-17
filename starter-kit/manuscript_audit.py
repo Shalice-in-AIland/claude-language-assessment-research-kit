@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """manuscript_audit.py — independent second-model audit of a pre-submission review.
 
-Part of CLAS (claude-language-assessment-skills). Standard library only — no installs.
+Part of CLARK (claude-language-assessment-research-kit). Standard library only — no installs.
 
 Sends the MANUSCRIPT TEXT plus the review's numbered findings to a SECOND,
 cross-vendor model, which acts as an independent rater: it re-judges each
