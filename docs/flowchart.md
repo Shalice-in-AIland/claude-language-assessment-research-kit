@@ -16,9 +16,14 @@ flowchart LR
     F["<b>6 · SUBMIT</b><br/>venue checklist +<br/>your AI-use declaration 👤"]
     A --> B --> C --> D --> E --> F
     F -. "revision rounds: resolution audit · sync check · re-score" .-> E
+    M["🛠 <b>model-radar</b> — maintenance watch<br/>are the pinned audit models still alive & current?<br/>⚙️ monthly · propose-only log"]
+    B -.- M
+    E -.- M
 ```
 
 *Every station also works alone — check citations without a matrix, review a draft without a radar, polish a paragraph any time. The lifecycle is the map, not a required march.*
+
+**🛠 model-radar — the maintenance watch under stations 2 & 5.** Monthly (or on demand), it re-verifies every pinned audit model (model aliases retire quietly), diffs the vendors' prompting guides, and flags price/tier changes — one propose-only log entry per run; a dead or retiring pin is the highest-priority finding.
 
 ## The citation pipeline underneath (set up once — it feeds every stage)
 
