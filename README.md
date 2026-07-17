@@ -1,6 +1,10 @@
 # Claude Language Assessment Research Kit (CLARK)
 
+![version](https://img.shields.io/badge/version-1.0-blue) ![license](https://img.shields.io/badge/license-MIT-green) ![runs on](https://img.shields.io/badge/runs%20on-Claude%20Code-8A5CF6) ![field](https://img.shields.io/badge/field-language%20assessment%20%2F%20applied%20linguistics-orange)
+
 **The whole research workflow — operated by Claude, checked at every step, decided by you.** Research skills for the language-assessment and applied-linguistics community. From the literature watch to the pre-submission check, each skill packages a complete, **integrity-first** workflow — integrity-first meaning nothing is ever invented, nothing is silently changed, and the AI-use declaration your venue expects is a built-in reminder. Claude runs the machinery and checks the record; the reading, the claims, and the judgement calls stay yours.
+
+> **Claude is the operator and the checker — never the author.** CLARK doesn't read your papers for you and won't write your argument. It runs the machinery *around* the scholarship: renders your citations perfectly, audits every reference against live records (dead DOIs, mis-attached works, retractions, superseded preprints), watches the field for new papers, recomputes the statistics in your manuscript, and reads your draft through your target journal's *own* reviewer criteria — with a second, different-vendor AI on call to re-judge any of it. What stays yours is everything that makes it research: the reading, the relevance calls, the interpretation, and the claims you put your name to.
 
 | Skill | What it does | Status |
 |---|---|---|
