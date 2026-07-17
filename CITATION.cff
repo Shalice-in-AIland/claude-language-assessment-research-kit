@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use CLARK in your research or teaching, please cite it as below."
+type: software
+title: "CLARK — Claude Language Assessment Research Kit"
+authors:
+  - family-names: "Liu"
+    given-names: "Sha"
+abstract: >-
+  Integrity-first Claude Code skills for language assessment / applied
+  linguistics research: automated Zotero-to-Word citations, retraction-checked
+  reference audits, a living literature review with a standing radar,
+  pre-submission manuscript review, and writing polish. The AI operates the
+  workflow and checks the record; the scholar keeps the judgement calls.
+repository-code: "https://github.com/Shalice-in-AIland/claude-language-assessment-research-kit"
+url: "https://github.com/Shalice-in-AIland/claude-language-assessment-research-kit"
+license: MIT
+version: 1.0.0
+date-released: "2026-07-17"
+keywords:
+  - language assessment
+  - applied linguistics
+  - academic writing
+  - citation integrity
+  - literature review
+  - peer review
+  - Claude Code
