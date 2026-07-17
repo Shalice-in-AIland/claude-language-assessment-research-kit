@@ -3,6 +3,8 @@
 *The base pipeline needs nothing in this file. Your drafts are plain-text Markdown, so any editor works — this page is for [Obsidian](https://obsidian.md), a free notes app many researchers write in, as the place you draft and keep notes. Nothing about the pipeline changes: same files, same `[@key]` citations, same "render my draft".*
 
 > **Who does what.** Your part is the clicks inside the Obsidian app — install it, open your folder, optionally add a plugin (Claude can't click Obsidian's UI for you). Claude's part is everything it always does (renders, warnings, audits) **plus one Obsidian-specific service: the syntax sweep** — we render-tested exactly what happens when Obsidian-only syntax leaks into a manuscript (the table below), and you can ask Claude to check any draft for it.
+>
+> **Want it wired up without the reading?** Ask Claude for a step-by-step guide — or ask it to set up Obsidian around your project for you (everything except the clicks inside the Obsidian app).
 
 ## Think of it as…
 

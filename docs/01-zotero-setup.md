@@ -3,6 +3,8 @@
 *Written for someone who has never used Zotero, Pandoc, or a plugin. Every step ends with what you should see, so you know it worked. If a menu looks different on your screen (these tools update regularly), the linked official page is the always-current source.*
 
 > **Who does what.** Your part is the **clicks inside the Zotero app** — Steps 1–4 below, plus pinning (Claude can't click inside Zotero for you). The terminal work — **installing Pandoc and rendering — Claude does for you** when you say *"set up automatic citations for me"*; Steps 5–6 are just a line telling you what to ask. *(Prefer to run the whole thing by hand, without Claude? The [starter-kit README](../starter-kit/README.md) has the commands.)*
+>
+> **Stuck at any step?** Ask Claude for a step-by-step guide — or ask it to do the step for you; it can do everything on this page except the clicks inside Zotero, and it walks you through those one checkpoint at a time.
 
 ## The idea in one paragraph
 

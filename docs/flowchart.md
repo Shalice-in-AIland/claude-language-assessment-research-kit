@@ -1,6 +1,6 @@
 # CLARK — how the toolkit fits together
 
-Six skills stationed along one research lifecycle: **you keep every judgement call, Claude operates the machinery, and nothing is written without your yes.** (Built on Zotero + Better BibTeX + Pandoc + Claude Code; style = APA 7th or any journal's.)
+Seven skills along one research lifecycle — six stations plus the maintenance watch on your pinned audit models: **you keep every judgement call, Claude operates the machinery, and nothing is written without your yes.** (Built on Zotero + Better BibTeX + Pandoc + Claude Code; style = APA 7th or any journal's.)
 
 **Legend:** 👤 you — judgement · 🤖 Claude — drafts, checks, audits, never invents · ⚙️ automatic — tools · ⚠️ built-in check
 

@@ -1,6 +1,6 @@
 # Claude Language Assessment Research Kit (CLARK)
 
-**A second rater, not a ghostwriter.** Research skills for the language-assessment and applied-linguistics community, operated by Claude Code: each skill packages a complete, integrity-first research workflow — Claude runs the machinery and checks the record; the reading, the claims, and the judgement calls stay yours.
+**The whole research workflow — operated by Claude, checked at every step, decided by you.** Research skills for the language-assessment and applied-linguistics community. From the literature watch to the pre-submission check, each skill packages a complete, **integrity-first** workflow — integrity-first meaning nothing is ever invented, nothing is silently changed, and the AI-use declaration your venue expects is a built-in reminder. Claude runs the machinery and checks the record; the reading, the claims, and the judgement calls stay yours.
 
 | Skill | What it does | Status |
 |---|---|---|
@@ -12,7 +12,7 @@
 | [`literature-radar`](skills/literature-radar/SKILL.md) | Standing watch for new papers — scheduled sweeps, strict dedup against your corpus, pre-screened triage-ready digests with a "needs your attention" shortlist; discovery only, you approve inclusions | ✅ ready |
 | [`model-radar`](skills/model-radar/SKILL.md) | Maintenance watch on the AI models your audits pin — monthly liveness check of pinned model IDs (aliases retire quietly), vendor prompting-guide deltas, price/tier changes; propose-only log | ✅ ready |
 
-*Skills for sub-fields (e.g. automated speaking assessment) join as the toolkit grows. The rest of this page documents the citation skills — the toolkit's foundation.*
+*Every skill also works **on its own** — run just the citation check, or just a review, in any order. And a skill is a plain instruction file, not an app: the full machinery lives in Claude Code (renders, live Zotero, scheduled radars), and a skill can travel to lighter setups — upload one to a chat interface and Claude follows the same workflow within that interface's limits. Skills for sub-fields (e.g. automated speaking assessment) join as the toolkit grows. The rest of this page documents the citation skills — the toolkit's foundation.*
 
 ---
 
@@ -40,7 +40,7 @@ Claude Code runs the fiddly parts — terminals, installs, render commands, warn
 2. Install [Claude Code](https://claude.com/claude-code) (desktop app or CLI).
 3. Open the unzipped folder in Claude Code and say: **"Read skills/zotero-citations/SKILL.md and set up automatic citations for me."**
 
-Claude then does the computer work itself — checks/installs Pandoc, places the files, renders the demo so you *see it working first* — and guides you click-by-click through the Zotero steps, confirming each one worked before the next. From then on, daily use is three moves: **add a paper to Zotero → cite by `[@key]` → say "render my draft."**
+Claude then does the computer work itself — checks/installs Pandoc, places the files, renders the demo so you *see it working first* — and guides you click-by-click through the Zotero steps, confirming each one worked before the next. From then on, daily use is three moves: **add a paper to Zotero → cite by `[@key]` → say "render my draft."** And that's the standing habit for everything in this kit: at any step — Zotero setup, linking Obsidian, the audits — **ask Claude for a step-by-step guide, or simply ask it to set it up for you.**
 
 **The operator's manual:** [docs/01](docs/01-zotero-setup.md) (setup, with screenshots), [docs/02](docs/02-daily-workflow.md) (daily use), [docs/03](docs/03-troubleshooting.md) (every gotcha we hit, with fixes), and [docs/04](docs/04-citation-integrity.md) — **the citation-integrity rules**: how this workflow guarantees no fabricated, no "Frankenstein", and no orphaned references. These are the steps and rules Claude itself follows — read them to see exactly what's happening under the hood, or to do any step yourself. The discipline is author-agnostic: however the prose was drafted, references must resolve, numbers must trace to their tables, and described methods must match the instruments actually included.
 
@@ -48,7 +48,7 @@ Claude then does the computer work itself — checks/installs Pandoc, places the
 
 **Writing in Obsidian (or want to)?** Your drafts are plain Markdown, so Obsidian plugs in with zero pipeline changes — [docs/06](docs/06-obsidian-editor.md) is the two-click setup (open your project folder as a vault), the optional citekey-autocomplete plugins, and a render-tested table of what happens if Obsidian-only syntax (like `%%hidden comments%%` — which Word prints!) leaks into a manuscript.
 
-**Running a literature review?** [docs/07](docs/07-literature-review.md) is the living-review system: a matrix you approve row by row, generated Obsidian views (per-paper notes, theme/method hubs, a dashboard), and an optional cross-vendor AI audit of your own judgements — flag-never-guess throughout.
+**Running a literature review?** [docs/07](docs/07-literature-review.md) is the living-review system: a matrix you approve row by row, generated Obsidian views (per-paper notes, theme/method hubs, a dashboard), and an optional cross-vendor AI audit of your own judgements — a second rater, not a ghostwriter; flag-never-guess throughout.
 
 **About to submit a paper?** [docs/08](docs/08-pre-submission-review.md) is the pre-submission review of **your own manuscript**: page-anchored findings and recomputed statistics, a triage list you adjudicate before anything is written up, a prioritized revision plan with a 0–100 estimate, and a compliance check against the journal's current author instructions.
 
