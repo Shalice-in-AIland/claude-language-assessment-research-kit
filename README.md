@@ -1,6 +1,6 @@
 # Claude Language Assessment Research Kit (CLARK)
 
-**Research skills for the language-assessment and applied-linguistics community, operated by Claude Code.** Each skill packages a complete, integrity-first research workflow — Claude runs the machinery; the scholarly judgement stays yours.
+**A second rater, not a ghostwriter.** Research skills for the language-assessment and applied-linguistics community, operated by Claude Code: each skill packages a complete, integrity-first research workflow — Claude runs the machinery and checks the record; the reading, the claims, and the judgement calls stay yours.
 
 | Skill | What it does | Status |
 |---|---|---|
@@ -10,6 +10,7 @@
 | [`writing-polish`](skills/writing-polish/SKILL.md) | Polish of YOUR OWN prose across five dimensions — accuracy, clarity/readability, formality, register & conventions, stance — built for multilingual and early-career academics; accuracy errors corrected directly (with a learnable change log), style as numbered proposals you accept one at a time; numbers/citations/claim strength never touched; the AI-declaration reminder is built in | ✅ ready |
 | [`literature-review`](skills/literature-review/SKILL.md) | Living review matrix — approval-gated triage (relevance tiers, KEY flags, keep-but-flag quality checklist) + Obsidian views generated from the matrix (citekey-named notes, controlled theme hubs, method/tool hubs) | ✅ ready |
 | [`literature-radar`](skills/literature-radar/SKILL.md) | Standing watch for new papers — scheduled sweeps, strict dedup against your corpus, pre-screened triage-ready digests with a "needs your attention" shortlist; discovery only, you approve inclusions | ✅ ready |
+| [`model-radar`](skills/model-radar/SKILL.md) | Maintenance watch on the AI models your audits pin — monthly liveness check of pinned model IDs (aliases retire quietly), vendor prompting-guide deltas, price/tier changes; propose-only log | ✅ ready |
 
 *Skills for sub-fields (e.g. automated speaking assessment) join as the toolkit grows. The rest of this page documents the citation skills — the toolkit's foundation.*
 

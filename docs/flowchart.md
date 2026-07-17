@@ -41,7 +41,7 @@ Claude runs the toolkit with you — bookkeeping and vigilance, never invention 
 - **Discovery & review:** radar sweeps, dedup, drafted triage rows and generated vault views — every judgement call queued for your approval, never written silently.
 - **Render & report:** runs the renders, reads every warning, explains orphans in plain language.
 - **Verification:** DOI resolve-and-match, retractions, preprint→version-of-record; manuscript evidence ledgers with recomputed statistics and page anchors; then a fresh agent re-checks the review itself before you see it.
-- **Second opinions (optional — your key, your call, per run):** a different vendor's model re-judges review rows or the whole manuscript evaluation, propose-only; pinned models are re-verified on a schedule so a retired ID never silently breaks an audit.
+- **Second opinions (optional — your key, your call, per run):** a different vendor's model re-judges review rows or the whole manuscript evaluation, propose-only; the `model-radar` skill re-verifies the pinned models on a schedule so a retired ID never silently breaks an audit.
 
 ## The standing rules
 
