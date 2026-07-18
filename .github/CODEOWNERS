@@ -1,0 +1,4 @@
+# CLARK code owners.
+# Every path is owned by the maintainer; with "Require review from Code Owners"
+# enabled in main's branch protection, every PR needs their approval to merge.
+* @Shalice-in-AIland
