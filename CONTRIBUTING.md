@@ -11,6 +11,7 @@ Thank you for considering it. CLARK runs on the same rule it enforces — **flag
 
 ## Ground rules (all contributions)
 
+- **All changes land by pull request.** The maintainer is the code owner ([.github/CODEOWNERS](.github/CODEOWNERS)); every PR needs their approving review before it merges into `main`.
 - The **16-rule integrity charter** ([docs/04](docs/04-citation-integrity.md)) governs everything and is the single source of those rules — nothing forks or restates it.
 - **Provenance:** criteria and venue content trace to published/publisher sources — never an invented rubric. Published instruments are summarized and cited, never reproduced. Nothing unpublished or privately shared without the owner's written consent.
 - **Field-neutral examples** in all user-facing docs; no personal-project content, credentials, or local paths.
