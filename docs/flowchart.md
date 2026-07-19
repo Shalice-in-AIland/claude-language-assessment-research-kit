@@ -40,7 +40,7 @@ flowchart LR
 
 ## Claude Code — the built-in operator
 
-Claude runs the toolkit with you — bookkeeping and vigilance, never invention (docs 00–08 = the manual Claude follows; every step is inspectable):
+Claude runs the toolkit with you — bookkeeping and vigilance, never invention (docs 00–09 = the manual Claude follows; every step is inspectable):
 
 - **Set-up:** installs and wires the tools per project (no-admin setups included), copies the starter-kit, verifies the sample render — then walks you through the few Zotero clicks it can't do for you.
 - **Discovery & review:** radar sweeps, dedup, drafted triage rows and generated vault views — every judgement call queued for your approval, never written silently.
@@ -59,4 +59,4 @@ Claude runs the toolkit with you — bookkeeping and vigilance, never invention 
 
 ---
 
-*Prefer a designed, printable one-pager? [flowchart.html](flowchart.html) is the same picture with full styling — GitHub shows HTML as code, so open it after downloading the ZIP (just double-click the file). Companion: docs/00–08 + the starter-kit/ folder. Last verified July 2026.*
+*Prefer a designed, printable one-pager? [flowchart.html](flowchart.html) is the same picture with full styling — GitHub shows HTML as code, so open it after downloading the ZIP (just double-click the file). Companion: docs/00–09 + the starter-kit/ folder. Last verified July 2026.*

@@ -20,7 +20,7 @@ Click **Code ▾ → Download ZIP** on the repo page and unzip (no git needed) �
 - *"Set up automatic citations for me"* → guided Zotero + render pipeline ([docs/01](01-zotero-setup.md)).
 - *"Set up my literature review"* → the interview that creates your `review-conventions.md` ([docs/07](07-literature-review.md)).
 - *"Set up a literature radar for this project"* → scheduled sweeps feeding your triage ([docs/07](07-literature-review.md)).
-- *"Polish this paragraph"* → the five-dimension writing polish (accuracy corrected, style proposed — [the skill](../skills/writing-polish/SKILL.md)).
+- *"Polish this paragraph"* → the five-dimension writing polish (accuracy corrected, style proposed — [docs/09](09-writing-polish.md)).
 - *"Check my citations"* → the integrity pass, any time ([docs/04](04-citation-integrity.md)).
 - *"Review my draft for submission to ⟨journal⟩"* → the pre-submission review ([docs/08](08-pre-submission-review.md)).
 - *"Check my model pins"* → the model radar: verifies the AI models your audits pin are still live and current (propose-only log).
