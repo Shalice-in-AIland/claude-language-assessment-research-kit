@@ -8,6 +8,10 @@ All notable changes to CLARK, one entry per release (the git history carries the
 - **CLARK Field Guides** — the expert-curated domain-pack series: spec with charter-grade provenance rules and the three contribution rungs (cited / feedback-invited / co-curated), the `_template/` starting kit, the registry, and the founding guide (Automated Writing Evaluation, curated by Sha Liu — in preparation).
 - `CONTRIBUTING.md` — how to contribute, ground rules, and the versioning/release policy.
 - `docs/09-writing-polish.md` — the writing-polish user guide (the one skill that lacked a guide page); docs/07 gains a "model radar" section; every skill row in the README now links its guide.
+- `.github/CODEOWNERS` + branch protection on `main` — all changes now land via pull request with the maintainer's code-owner approval (the propose-never-apply charter applied to the repo itself).
+
+### Changed
+- **literature-radar** — Mode S reframed as **seed-based discovery** (build *or expand* a corpus from anchor papers, not only cold-start): Claude runs the citation-snowball directly on the open graphs (OpenAlex, Semantic Scholar), and always offers ResearchRabbit / Litmaps / Connected Papers as an optional *cross-check* — with the honest caveat that none of them, nor the snowball, is an exhaustive search (systematic database search still leads for recall). `docs/07` gains a user-facing "Finding the papers" section.
 
 ### Fixed
 - DOI badge: Zenodo's auto-badge is refused by GitHub's image proxy (redirect served as `text/html`); replaced with a shields.io badge showing the permanent concept DOI.
