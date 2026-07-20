@@ -19,6 +19,12 @@
 
 **Say: _"triage this paper"_** (with a PDF, DOI, or citation). Claude reads it — declaring honestly *how well* it could read it (scanned PDFs and figure-heavy results get flagged, not faked) — and returns a complete triage report: in or out, the drafted matrix row, a tier and KEY recommendation with one-line rationales, a quality checklist that **flags weaknesses but never excludes** a paper, and how it sits against your existing corpus (corroborates? contradicts? supersedes?). **Then it stops.** Nothing is written until you say yes; on your yes, the row lands with a dated backup and an integrity check.
 
+## Finding the papers in the first place (discovery, before triage)
+
+**Building a corpus from scratch — or already have a few key papers and want the work around them? Say: _"help me find related work from these anchor papers."_** Claude walks the citation graph outward from your seeds — following *references* (backward) and *citations* (forward) — and hands you a triage-ready seeding digest. It does this on the **same open citation data (OpenAlex, Semantic Scholar) that the popular visual explorers ride on** — so if you'd rather browse it visually, or double-check coverage, those tools are a good **cross-check**: [ResearchRabbit](https://www.researchrabbit.ai/), [Litmaps](https://www.litmaps.com/) (whose *Monitor* emails you new papers on a saved map — the manual version of CLARK's radar), and [Connected Papers](https://www.connectedpapers.com/) (a *similarity* map rather than a citation trail). Because they share the underlying data, treat them as a coverage cross-check, not an independent source.
+
+One honest limit — the same one those tools carry: this is **discovery, not exhaustive search**. For reproducible completeness, systematic database searching (Scopus, Web of Science) still leads; the radar and the snowball complement it, they don't replace it. Then, to keep watching for new work: **_"set up a literature radar"_** runs scheduled sweeps in your scope, pre-screened into the same triage-ready digest.
+
 ## The Obsidian views (optional, and worth it)
 
 **Say: _"update my literature notes."_** Claude dry-runs first and shows you the plan, then generates into your vault:
