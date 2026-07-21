@@ -94,3 +94,7 @@ Unsure whether your setup is complete? Ask Claude to **"run the CLARK doctor"** 
 ## License
 
 MIT for everything in this repo, **except** `starter-kit/style.csl` (the APA style file), which comes from the [CSL project](https://citationstyles.org/) and keeps its own Creative Commons BY-SA license (noted inside the file). See [LICENSE](LICENSE).
+
+---
+
+*A note on the name: CLARK was developed under the working name "CLAS" before its public release, so you may still see that name in the earliest commits, the v1.0.0 changelog entry, and one internal generation marker (`clas-literature-review`) kept deliberately for backward compatibility with vaults created before the rename.*

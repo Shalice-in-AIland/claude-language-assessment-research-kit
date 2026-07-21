@@ -11,6 +11,7 @@ All notable changes to CLARK, one entry per release (the git history carries the
 - `.github/CODEOWNERS` + branch protection on `main` — all changes now land via pull request with the maintainer's code-owner approval (the propose-never-apply charter applied to the repo itself).
 
 ### Changed
+- README — a short "note on the name" footnote explaining the pre-release CLAS → CLARK rename, so the name in early commits / the v1.0.0 entry / the internal `clas-literature-review` marker doesn't puzzle newcomers.
 - **literature-radar** — Mode S reframed as **seed-based discovery** (build *or expand* a corpus from anchor papers, not only cold-start): Claude runs the citation-snowball directly on the open graphs (OpenAlex, Semantic Scholar), and always offers ResearchRabbit / Litmaps / Connected Papers as an optional *cross-check* — with the honest caveat that none of them, nor the snowball, is an exhaustive search (systematic database search still leads for recall). `docs/07` gains a user-facing "Finding the papers" section.
 
 ### Fixed
