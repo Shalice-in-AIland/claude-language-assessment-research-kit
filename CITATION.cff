@@ -14,8 +14,8 @@ abstract: >-
 repository-code: "https://github.com/Shalice-in-AIland/claude-language-assessment-research-kit"
 url: "https://github.com/Shalice-in-AIland/claude-language-assessment-research-kit"
 license: MIT
-version: 1.0.0
-date-released: "2026-07-17"
+version: 1.1.0
+date-released: "2026-07-23"
 doi: "10.5281/zenodo.21411273"
 identifiers:
   - type: doi

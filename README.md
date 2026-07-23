@@ -1,6 +1,6 @@
 # Claude Language Assessment Research Kit (CLARK)
 
-![version](https://img.shields.io/badge/version-1.0.0-blue) [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.21411273-blue)](https://doi.org/10.5281/zenodo.21411273) ![license](https://img.shields.io/badge/license-MIT-green) ![runs on](https://img.shields.io/badge/runs%20on-Claude%20Code-8A5CF6) ![field](https://img.shields.io/badge/field-language%20assessment%20%2F%20applied%20linguistics-orange)
+![version](https://img.shields.io/badge/version-1.1.0-blue) [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.21411273-blue)](https://doi.org/10.5281/zenodo.21411273) ![license](https://img.shields.io/badge/license-MIT-green) ![runs on](https://img.shields.io/badge/runs%20on-Claude%20Code-8A5CF6) ![field](https://img.shields.io/badge/field-language%20assessment%20%2F%20applied%20linguistics-orange)
 
 Research skills for the language-assessment and applied-linguistics community. From the literature watch to the pre-submission check, each skill packages a complete, **integrity-first** workflow — integrity-first meaning nothing is ever invented, nothing is silently changed, and the AI-use declaration your venue expects is a built-in reminder.
 
