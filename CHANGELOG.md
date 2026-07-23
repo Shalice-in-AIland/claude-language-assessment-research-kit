@@ -6,7 +6,7 @@ All notable changes to CLARK, one entry per release (the git history carries the
 
 ## [1.1.0] — 2026-07-23
 
-**Citation integrity goes standalone.** The kit's most-requested check becomes extractable — one self-contained file for any AI chat, one printable checklist for supervision — and the in-repo skill it mirrors gains a sharper claim-faithfulness layer and an action-first report.
+**Citation integrity goes standalone.** The kit's most-requested check becomes extractable — one self-contained file for any AI chat, one printable checklist for supervision — and the in-repo skill it mirrors gains a sharper claim-faithfulness layer and an action-first report. DOI: [10.5281/zenodo.21504577](https://doi.org/10.5281/zenodo.21504577).
 
 ### Added
 - **`standalone/citation-integrity/`** — the citation check, extractable: a self-contained **portable edition** for any AI assistant (paste + "check my citations"; search-based verification, action-first report, the same precision guards and find-never-supply rule as the full skill) and a **one-page practice checklist for supervisors and research students** (human-facing, rule-numbers keyed to docs/04, printable .docx included).
