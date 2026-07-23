@@ -32,7 +32,7 @@
 - Validation accounts in docs stay generic: real projects and test materials are never identifiable in this repo.
 
 ## Positioning (verified 2026-07-13, point-in-time)
-Benchmarked against: ARS (`Imbad0202/academic-research-skills`, ~37.7k★, CC BY-NC — ideas only, never code), `Galaxy-Dawn/claude-scholar` (~4.6k★, MIT), `54yyyu/zotero-mcp` (~4.3k★, MIT — the MCP server the Level-2 upgrade uses). CLARK's niche (found open): the focused **render + citation-integrity layer, novice-first, field-scoped** — none of the big generic pipelines renders *and* enforces a retraction-checked integrity charter. CLARK *consumes* generic infrastructure (zotero-mcp, Pandoc) rather than forking it.
+Benchmarked against the largest open generic academic-AI research toolkits on GitHub (the specific comparison set — names, stars, licenses — lives in the maintainer's private external-sources register; per the crediting rule, third-party repositories are not named on public surfaces without joint agreement, consumed infrastructure excepted). CLARK's niche (found open): the focused **render + citation-integrity layer, novice-first, field-scoped** — none of the big generic pipelines renders *and* enforces a retraction-checked integrity charter. CLARK *consumes* generic infrastructure (Pandoc; `zotero-mcp`, the MCP server the Level-2 upgrade uses) rather than forking it.
 
 ## Provenance & sweep discipline
 - External ideas are adopted with credit and license respect: MIT projects may be consumed or adapted with attribution; CC BY-NC projects are ideas-only; every CLARK script is written fresh, standard-library-only.
