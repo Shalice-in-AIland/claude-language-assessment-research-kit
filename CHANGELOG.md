@@ -4,6 +4,9 @@ All notable changes to CLARK, one entry per release (the git history carries the
 
 ## [Unreleased]
 
+### Changed
+- README — a **"What's new"** section now carries release headlines (newest first; the Field Guides invitation lives there too), and the skills table gains a **Standalone** column marking which skills ship a portable any-AI edition (currently: citation-integrity).
+
 ## [1.1.0] — 2026-07-23
 
 **Citation integrity goes standalone.** The kit's most-requested check becomes extractable — one self-contained file for any AI chat, one printable checklist for supervision — and the in-repo skill it mirrors gains a sharper claim-faithfulness layer and an action-first report. DOI: [10.5281/zenodo.21504577](https://doi.org/10.5281/zenodo.21504577).
