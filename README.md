@@ -47,13 +47,20 @@ Claude Code runs the fiddly parts — terminals, installs, render commands, warn
 
 ---
 
-## Get started (~30 min, mostly automated)
+## Two ways to use CLARK
+
+**Way 1 — the whole kit** *(~30 min setup, mostly automated)* — the citation pipeline plus every audit, review, and radar skill:
 
 1. Click the green **Code ▾** button above → **Download ZIP** → unzip. (No git needed.)
 2. Install [Claude Code](https://claude.com/claude-code) (desktop app or CLI).
 3. Open the unzipped folder in Claude Code and say: **"Read skills/zotero-citations/SKILL.md and set up automatic citations for me."**
 
 Claude then does the computer work itself — checks/installs Pandoc, places the files, renders the demo so you *see it working first* — and guides you click-by-click through the Zotero steps, confirming each one worked before the next. From then on, daily use is three moves: **add a paper to Zotero → cite by `[@key]` → say "render my draft."** And that's the standing habit for everything in this kit: at any step — Zotero setup, linking Obsidian, the audits — **ask Claude for a step-by-step guide, or simply ask it to set it up for you.**
+
+**Way 2 — one skill on its own** — every skill runs independently; two routes, lightest first:
+
+- **Zero setup, any AI chat** *(~2 min)*: skip every step above — no repo, no Claude Code. Download just the **[standalone pack](standalone/citation-integrity/README.md)**, attach its one self-contained file to any AI chat together with your reference list, and say *"check my citations."* (Currently the citation check; more portable editions are planned — the **Standalone** column above tracks them.)
+- **Inside Claude Code** *(~5 min)*: steps 1–2 above only — the skills travel with the repo folder because they lean on its shared `docs/` charter and `starter-kit/` scripts — then ask for just the check you need: *"check my citations"*, *"review my manuscript"*, *"triage this paper"*. This route adds what a chat can't run: the scripted deterministic checks (standard-library Python, run by Claude — nothing extra to install), live Zotero, scheduled radars. Only rendering needs Way 1's full setup.
 
 **The operator's manual:** [docs/01](docs/01-zotero-setup.md) (setup, with screenshots), [docs/02](docs/02-daily-workflow.md) (daily use), [docs/03](docs/03-troubleshooting.md) (every gotcha we hit, with fixes), and [docs/04](docs/04-citation-integrity.md) — **the citation-integrity rules**: how this workflow guarantees no fabricated, no "Frankenstein", and no orphaned references. These are the steps and rules Claude itself follows — read them to see exactly what's happening under the hood, or to do any step yourself. The discipline is author-agnostic: however the prose was drafted, references must resolve, numbers must trace to their tables, and described methods must match the instruments actually included.
 
@@ -79,7 +86,7 @@ Your draft never changes: `[@cheng2026]` stays `[@cheng2026]`; only the style fi
 
 ## What Claude Code does here (the built-in operator)
 
-[`skills/zotero-citations/SKILL.md`](skills/zotero-citations/SKILL.md) teaches Claude this workflow's five jobs: **guided onboarding** (the Get-started setup above), **per-project setup** (copies the starter-kit into any new project and verifies the sample render), **render-and-explain** (runs the render, translates every warning into plain language), **library health-check** (missing years/DOIs, duplicates, stale exports), and a **pre-submission integrity pass** (every citation traced to a real record, text ↔ reference list reconciled both ways) — always **flagging anything it can't verify rather than guessing**, under the full rule set in [docs/04-citation-integrity.md](docs/04-citation-integrity.md). The judgement calls — what to read, what to cite, what a source says — stay yours.
+[`skills/zotero-citations/SKILL.md`](skills/zotero-citations/SKILL.md) teaches Claude this workflow's five jobs: **guided onboarding** (the Way-1 setup above), **per-project setup** (copies the starter-kit into any new project and verifies the sample render), **render-and-explain** (runs the render, translates every warning into plain language), **library health-check** (missing years/DOIs, duplicates, stale exports), and a **pre-submission integrity pass** (every citation traced to a real record, text ↔ reference list reconciled both ways) — always **flagging anything it can't verify rather than guessing**, under the full rule set in [docs/04-citation-integrity.md](docs/04-citation-integrity.md). The judgement calls — what to read, what to cite, what a source says — stay yours.
 
 The integrity pass is also a **standalone skill** — [`skills/citation-integrity/`](skills/citation-integrity/SKILL.md) — callable on its own ("check my citations") even without the render pipeline. It runs three library checks in `starter-kit/`: `check_retractions.py` (Crossref / Retraction Watch), `resolve_check.py` (does every DOI *resolve* to a real record, and does that record *match* your entry — catching dead DOIs and mis-attached / "Frankenstein" references), and `vor_check.py` (which of your cited preprints now have a published version of record). All are standard-library Python, no install.
 

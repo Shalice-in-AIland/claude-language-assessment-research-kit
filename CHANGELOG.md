@@ -6,6 +6,7 @@ All notable changes to CLARK, one entry per release (the git history carries the
 
 ### Changed
 - README — a **"What's new"** section now carries release headlines (newest first; the Field Guides invitation lives there too), and the skills table gains a **Standalone** column marking which skills ship a portable any-AI edition (currently: citation-integrity).
+- README — "Get started" reframed as **"Two ways to use CLARK"**: Way 1, the whole kit (~30 min, steps unchanged); Way 2, one skill on its own — zero-setup via the standalone pack in any AI chat (~2 min, no repo, no Claude Code), or inside Claude Code with the scripted checks (~5 min, download + install only).
 
 ## [1.1.0] — 2026-07-23
 
