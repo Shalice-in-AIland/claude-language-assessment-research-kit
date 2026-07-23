@@ -10,7 +10,9 @@
 - **Quote with a locator.** Every direct quotation carries a page or section number, checked against the source — not from memory. *(rule 9)*
 - **Never let anyone — or any AI — supply a reference you haven't read.** An AI may *format and check* citations; it may never *supply* one. A plausible-looking reference you can't trace is worse than "[source needed]". *(rules 1, 5, 15)*
 
-## The pre-submission checks (an afternoon, once per manuscript)
+## The pre-submission checks (once per manuscript, before you submit)
+
+*By hand, these take a few focused hours for a typical reference list; the companion AI file at the end reduces the mechanical ones to minutes.*
 
 - ☐ **Every DOI resolves — and resolves to *your* reference.** Paste each DOI after `https://doi.org/` and confirm the landing page matches your entry's title, authors, and year. A DOI that resolves to a *different* work is a real and common error. *(rules 2, 3)*
 - ☐ **No cited paper has been retracted.** Search each key title with "retraction" (the Retraction Watch database is free). If a paper you rely on was retracted, remove it, replace it, or cite the retraction itself — knowingly citing retracted work as live findings is a serious fault. *(rule 14)*
