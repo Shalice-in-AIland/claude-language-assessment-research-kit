@@ -10,7 +10,7 @@ Click **Code ▾ → Download ZIP** on the repo page and unzip (no git needed) �
 
 ## Wiring it into a project (choose one, tell Claude)
 
-1. **Sibling folder (recommended)** — keep `claude-language-assessment-research-kit/` next to your project folder and invoke skills by path: *"Read ../claude-language-assessment-research-kit/skills/zotero-citations/SKILL.md and set up automatic citations for me."* One CLARK copy serves every project, and updates land once.
+1. **Sibling folder (recommended)** — keep your CLARK folder next to your project folder and invoke skills by path, using the folder's **actual name on your disk**: *"Read ../⟨your-CLARK-folder⟩/skills/zotero-citations/SKILL.md and set up automatic citations for me."* (The ZIP download unzips as `claude-language-assessment-research-kit-main`; feel free to rename it to something shorter — just use that name in the path.) One CLARK copy serves every project, and updates land once.
 2. **Inside the project** — copy the whole repo folder in (or under the project's `.claude/skills/`, keeping the repo folder whole). Self-contained, travels with the project.
 
 **You should see:** after the first skill run, a small `starter-kit` copy inside *your* project (render scripts, style file, checkers) — your project never depends on files it doesn't contain, except the skills themselves.

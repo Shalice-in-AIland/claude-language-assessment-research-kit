@@ -8,6 +8,9 @@ All notable changes to CLARK, one entry per release (the git history carries the
 - README — a **"What's new"** section now carries release headlines (newest first; the Field Guides invitation lives there too), and the skills table gains a **Standalone** column marking which skills ship a portable any-AI edition (currently: citation-integrity).
 - README — "Get started" reframed as **"Two ways to use CLARK"**: Way 1, the whole kit (~30 min, steps unchanged); Way 2, one skill on its own — zero-setup via the standalone pack in any AI chat (~2 min, no repo, no Claude Code), or inside Claude Code with the scripted checks (~5 min, download + install only).
 
+### Fixed
+- docs/00 — the sibling-folder wiring example now says "use your CLARK folder's actual name" with a placeholder path, and notes that the ZIP unzips as `claude-language-assessment-research-kit-main` (renaming is fine). The previous hard-coded folder name broke for anyone whose folder was named differently — caught in live project wiring.
+
 ## [1.1.0] — 2026-07-23
 
 **Citation integrity goes standalone.** The kit's most-requested check becomes extractable — one self-contained file for any AI chat, one printable checklist for supervision — and the in-repo skill it mirrors gains a sharper claim-faithfulness layer and an action-first report. DOI: [10.5281/zenodo.21504577](https://doi.org/10.5281/zenodo.21504577).
