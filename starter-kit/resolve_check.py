@@ -318,13 +318,15 @@ def main():
         print("\n○ NO DOI — a confident, type-matched Crossref record exists; add its DOI in Zotero (propose only — verify, don't auto-apply):")
         for e, c in proposals:
             print(f"  ○ {e['key']}  →  https://doi.org/{c['doi']}  (title sim {c['sim']:.2f}, type '{c['type']}')  \"{c['title'][:55]}\"")
+            if e["family"] and c["family"] and e["family"] not in c["family"] and c["family"] not in e["family"]:
+                print(f"      ⚠ first author differs: record '{c['family']}' vs entry '{e['family']}' — real title + wrong authors is a known fabrication pattern; check before adopting")
     if type_diff:
         print("\n○ NO DOI — a same-TITLE record exists but its TYPE differs (for a book this is usually a REVIEW, not the book): do NOT attach without checking:")
         for e, c in type_diff:
             print(f"  ○ {e['key']}  candidate https://doi.org/{c['doi']}  is a '{c['type']}' (entry is @{e['type']}) — confirm it is the work itself, not a review")
     if no_match:
         print(f"\n○ NO DOI, no confident match ({len(no_match)}): " +
-              ", ".join(e["key"] for e, _ in no_match) + "\n  (books/chapters often have no Crossref DOI — verify by hand; this is expected, not an error)")
+              ", ".join(e["key"] for e, _ in no_match) + "\n  (books/chapters often have no Crossref DOI — verify by hand: books by ISBN in a library catalogue; this is expected, not an error)")
     if failed:
         print(f"\n! lookups failed ({len(failed)}): " + ", ".join(e["key"] for e, _ in failed) + "  (network? rate limit? re-run)")
 
