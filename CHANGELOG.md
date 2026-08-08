@@ -4,11 +4,16 @@ All notable changes to CLARK, one entry per release (the git history carries the
 
 ## [Unreleased]
 
+### Added
+- `resolve_check.py` now detects **duplicate references**: the same DOI under two citekeys is a hard flag (one work listed twice — the classic draft-merge artifact), near-identical title + same year a soft "possible duplicate" (two-part articles look alike by design, so that one stays the user's call).
+- Citation-integrity reports now keep **identity verification and publication state as separate axes** — a reference can be *verified and retracted* at once; the verified-bucket table gains a publication-state column, and retractions remain 🚫 blockers regardless.
+
 ### Changed
 - README — a **"What's new"** section now carries release headlines (newest first; the Field Guides invitation lives there too), and the skills table gains a **Standalone** column marking which skills ship a portable any-AI edition (currently: citation-integrity).
 - README — "Get started" reframed as **"Two ways to use CLARK"**: Way 1, the whole kit (~30 min, steps unchanged); Way 2, one skill on its own — zero-setup via the standalone pack in any AI chat (~2 min, no repo, no Claude Code), or inside Claude Code with the scripted checks (~5 min, download + install only).
 
 ### Fixed
+- `resolve_check.py` no longer mislabels DataCite-registered DOIs — datasets, software, and repository deposits (Zenodo, OSF, figshare) — as dead: resolution now tries **Crossref → DataCite → OpenAlex** before any UNRESOLVED verdict, and "couldn't check" (network failure) stays distinct from "not found in any index." Proven live: the kit's own Zenodo DOI returns 404 from Crossref alone.
 - docs/00 — the sibling-folder wiring example now says "use your CLARK folder's actual name" with a placeholder path, and notes that the ZIP unzips as `claude-language-assessment-research-kit-main` (renaming is fine). The previous hard-coded folder name broke for anyone whose folder was named differently — caught in live project wiring.
 
 ## [1.1.0] — 2026-07-23
