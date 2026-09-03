@@ -53,6 +53,8 @@ Publication status (preprint/published) is NOT a study type — it derives autom
 - bibliography: ⟨path to the project's `library.bib`, relative to this file — enables the automatic preprint register: entry types (arXiv/unpublished/misc) mark each note `publication: preprint|published`, and the dashboard lists preprints to re-verify at write-up⟩
 - Core columns, in order: `# · Authors (Year) · Short focus · Folder · Theme · Primary use · Relevance · Construct link · Manuscript section · Read? · Key points / notes · Flags · Cite key`
 
+- Optional state columns (used by the radar's corpus state watch): `record_state` — normal · corrected · retracted · VoR-updated · `last_verified` — date the row's record was last checked against the publisher/index.
+
 ## Vault projection (optional — delete this section if the project doesn't use Obsidian)
 - Notes folder: ⟨e.g. `Notes` — the generator creates `Papers/` and `Themes/` inside it⟩
 - Regenerate with: *ask Claude to "update my literature notes"* (it dry-runs first and shows you the report before writing).
@@ -63,6 +65,7 @@ Publication status (preprint/published) is NOT a study type — it derives autom
 - Digest file: ⟨e.g. `RADAR_INBOX.md` — dated sections, newest on top, "Needs your attention" shortlist first⟩
 - Dedup against: the matrix (Authors + Cite key), the PDF folder, prior digests, live Zotero.
 - Rules: open-access fetching only · precision over recall ("nothing new" is a valid result) · discovery + pre-screen only — inclusions go through triage approval.
+- Corpus state watch (radar Mode C — what *changed* about papers already held): corpus bibliography ⟨path/to/library.bib⟩ · publisher-page glance list: ★ KEY rows ⟨+ any named rows⟩ · proposed row updates use the optional `record_state` / `last_verified` columns (see ## Matrix).
 
 ## Audit (highly recommended before submission milestones — needs your own API key; delete if unused)
 *A different vendor's model re-judges every row against THIS file's rules and files a propose-only report. Pin the exact model here (reproducibility — verify current model IDs and prices the day you set this up; names retire: e.g. DeepSeek's `deepseek-reasoner` alias is scheduled to retire 2026-07-24).*
