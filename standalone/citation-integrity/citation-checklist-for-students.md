@@ -1,4 +1,4 @@
-# Citation integrity — a practice checklist for research students
+# Citation integrity — a practice checklist for research students and their supervisors
 
 *A one-page companion for supervision: the habits that prevent citation problems, and the checks to run before any submission. Written for humans — no AI required (though one can run the mechanical parts for you; see the end). Item numbers in brackets key each check to the full 16-rule charter in [CLARK's docs/04](https://github.com/Shalice-in-AIland/claude-language-assessment-research-kit/blob/main/docs/04-citation-integrity.md), which remains the authority.*
 
@@ -6,6 +6,7 @@
 
 - **Read what you cite.** If you only know a paper through someone else's summary, either read the original before citing it, or cite it honestly as *"as cited in …"*. Citations copied from other papers' literature reviews are how errors travel between manuscripts. *(rules 5, 6)*
 - **Cite the version you actually used** — the edition, the translation, the preprint *or* the published version, whichever you read. When a preprint you cited gets published, update to the version of record. *(rules 4, 14)*
+- **Treat an under-review preprint as provisional, not proof.** A preprint that hasn't passed peer review may change between versions — or never be accepted. Cite it *as* a preprint, say so in your prose ("in a preprint, X report…"), and never let a single unreviewed finding — however striking, and frontier-model results are especially tempting — carry a load-bearing claim on its own. Before submitting, check whether a peer-reviewed version now exists, and whether your target journal has a policy on citing preprints (some require explicit labelling; a few restrict them for key claims). *(rules 4, 7, 14)*
 - **Attribute concepts in the source's own terms.** Before writing "X proposed ⟨your concept⟩," check that the source actually *develops* that concept — not a neighbouring idea you're reframing in your own vocabulary. A quick honesty test: could you quote a sentence where the authors say it themselves? (Watch the dates, too: if your concept postdates the paper you're attaching it to, something is off.) *(rule 1)*
 - **Quote with a locator.** Every direct quotation carries a page or section number, checked against the source — not from memory. *(rule 9)*
 - **Never let anyone — or any AI — supply a reference you haven't read.** An AI may *format and check* citations; it may never *supply* one. A plausible-looking reference you can't trace is worse than "[source needed]". *(rules 1, 5, 15)*
@@ -21,12 +22,14 @@
 - ☐ **Preprints are labelled as preprints** — and checked for a published version to cite instead. *(rules 4, 14)*
 - ☐ **Secondary citations are declared** ("as cited in"), not silently converted into first-hand ones. *(rules 5, 6)*
 - ☐ **Your strongest claims stand on sources that really say it.** For your 3–5 most load-bearing citations, re-open the source and re-read the passage. Does it support *your specific sentence* — in the authors' own terms? And is the evidence strong enough to carry it alone? *(rules 1, 7)*
-- ☐ **The venue's AI-use policy is checked and your declaration written**, if you used AI anywhere in the work. *(rule 15)*
+- ☐ **The venue's AI-use policy is checked and your declaration written**, if you used AI anywhere in the work. A complete statement names the tool and model version, what it was used for (which stage of the work), and how you verified its output — the elements methodologists now ask for (Jay et al., 2026). *(rule 15)*
 
 ## Letting an AI do the mechanical parts
 
 Every un-ticked box above is checkable in minutes by an AI assistant: paste the companion file [`citation-integrity-portable.md`](citation-integrity-portable.md) into your AI chat with your reference list and say *"check my citations."* You'll get an action-first report — problems named, fixes attached, decisions left to you. The judgement boxes — what to cite, what a source really says — remain yours: that is not a limitation of the tools; it is what authorship means.
 
 ---
+
+*Reference: Jay, M., Abi-Jaoude, J., Straus, S. E., Eskander, A., Lipscombe, L., Dharma, C., & Yu, C. (2026). Moving towards acceleration with accountability: A conceptual framework for AI-assisted systematic reviews. *Global Epidemiology, 12*, 100282. https://doi.org/10.1016/j.gloepi.2026.100282*
 
 *From [CLARK — the Claude Language Assessment Research Kit](https://github.com/Shalice-in-AIland/claude-language-assessment-research-kit) (free, open-source, MIT · DOI 10.5281/zenodo.21411273). Supervisors: adapt freely with attribution.*

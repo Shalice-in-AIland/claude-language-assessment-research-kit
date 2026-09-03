@@ -2,7 +2,7 @@
 
 *What a good run of the portable check should surface from [`self-check-sample.md`](self-check-sample.md). Nine planted issues: some catchable by cross-checking the passage against the list (no search needed), some only by looking each record up, and one — the headline case — that no tool can settle for you, only flag.*
 
-*Two references are **real and correct** and should come back verified; everything else is invented or planted. Verified against the primary record on **2026-09-03** — re-check the two real ones if you reuse this later (status drifts).*
+*Six of the twelve references are **real** (all re-verified against Crossref / the ACL Anthology on **2026-09-03**): five should come back **verified ✓** — Mizumoto & Eguchi (2023), Jin et al. (2025), Yamashita (2025), Li et al. (2026), Suhan & Wolf (2026) — and one, Bannò et al. (2024), is real with a single planted issue (#5). Everything else is invented or planted. Re-check the real ones if you reuse this later (status drifts).*
 
 ## Catchable by eye — passage ↔ list cross-check
 
@@ -28,7 +28,11 @@
 | 8 | **Lumley (2005)** in ¶2 | **Secondary framing risk** — a rater-training claim from human-rater research is extended to AI raters in the passage's own voice. If that bridge came from another paper's summary, it needs an *"as cited in"* (rules 5, 6); if it's the citing author's own inference, the source shouldn't carry it. A judgement flag, not a hard error. |
 | 9 | **Adeyemi (2025)** claim | **Load-bearing claim on an unverifiable source** — the "agreement drops for lower-proficiency writers" point rests entirely on the reference that doesn't resolve (#4). Worth surfacing as its own risk. |
 
-**Real & correct (should verify ✓):** Mizumoto & Eguchi (2023), *RMAL* — real, DOI resolves and matches. Bannò et al. (2024) — real work (the *only* issue is preprint-vs-VoR, #5). These two are why the report shouldn't be all red: a healthy check shows verified items too.
+## Real & correct — the clean decoys (should verify ✓)
+
+Mizumoto & Eguchi (2023), *RMAL* · Jin et al. (2025), *Education and Information Technologies* · Yamashita (2025), *Language Testing* · Li et al. (2026), *Scientific Reports* · Suhan & Wolf (2026), *Language Testing* — every DOI resolves and matches. Bannò et al. (2024) is also real; its *only* issue is preprint-vs-VoR (#5). A realistic reference list is mostly right with a few problems, and a healthy report shows that — these six are why the result shouldn't be all red.
+
+**A passed-with-note to watch for:** Suhan & Wolf appeared online in 2025 and in print in 2026 (vol. 43, issue 1). A check comparing against the online-first record may show a year discrepancy — that is a benign *passed-with-note*, not an error: identity verified, publication state normal.
 
 ## The one lesson to land
 
