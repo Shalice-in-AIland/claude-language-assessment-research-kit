@@ -6,6 +6,7 @@
 |---|---|---|
 | [`citation-integrity-portable.md`](citation-integrity-portable.md) | **Any researcher, any AI assistant** | Paste (or attach) the file into your AI chat — Claude, or another assistant — together with your reference list and draft, and say *"check my citations."* Self-contained instructions; the AI verifies by web search and reports action-first. |
 | [`citation-checklist-for-students.md`](citation-checklist-for-students.md) | **Supervisors and students — no AI required** | A one-page practice checklist: the habits that prevent citation problems and the checks to run before submission, written for humans. Print it, share it, put it in your programme handbook. |
+| [`self-check-sample.md`](self-check-sample.md) + [`self-check-answer-key.md`](self-check-answer-key.md) | **Anyone — see the check work** | A deliberately flawed passage + reference list. Paste it with the portable file to watch the checks fire, then compare against the answer key. Every reference in it is invented or planted — nothing to cite. |
 
 ## Quick start (any AI chat — ChatGPT, Claude, Kimi, Gemini…)
 

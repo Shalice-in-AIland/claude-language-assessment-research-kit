@@ -5,6 +5,7 @@ All notable changes to CLARK, one entry per release (the git history carries the
 ## [Unreleased]
 
 ### Added
+- **`standalone/citation-integrity/` self-check** — a deliberately flawed sample passage + reference list (`self-check-sample.md`) with an answer key, so anyone can paste it alongside the portable file and watch the checks fire. Nine planted issues span the eye-level catches (orphans, duplicate), the record checks (dead DOI, preprint-with-version-of-record), and the headline judgement case: an **under-review preprint quoted as established fact** — flagged as provisional, never adjudicated. Field-neutral; the two real anchor papers are correctly attributed and verified, everything else invented.
 - `resolve_check.py` now detects **duplicate references**: the same DOI under two citekeys is a hard flag (one work listed twice — the classic draft-merge artifact), near-identical title + same year a soft "possible duplicate" (two-part articles look alike by design, so that one stays the user's call).
 - Citation-integrity reports now keep **identity verification and publication state as separate axes** — a reference can be *verified and retracted* at once; the verified-bucket table gains a publication-state column, and retractions remain 🚫 blockers regardless.
 
