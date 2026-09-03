@@ -14,8 +14,8 @@ BibTeX entry, against public indexes — independently of any AI judgement:
     add the right DOI. It only PROPOSES candidates; it never edits your library (rule 13, no silent
     corrections) — you confirm and add the DOI in Zotero yourself.
   • DUPLICATES — the same DOI under two citekeys is one work listed twice (a hard flag; merge in
-    Zotero); near-identical titles with the same year are reported as *possible* duplicates only
-    (two-part articles look alike by design — your call).
+    Zotero); near-identical titles with the same year — or with one entry's year missing — are
+    reported as *possible* duplicates only (two-part articles look alike by design — your call).
 
 Verifies existence AND consistency, not just existence. Standard library only; free; no key needed.
 
@@ -191,7 +191,8 @@ def resolve_any(doi, mailto):
 
 def find_duplicates(entries):
     """Same-DOI pairs = one work under two citekeys (hard). Near-identical title + same year
-    = possible duplicate only (soft): two-part articles look alike by design."""
+    (a missing year is a wildcard) = possible duplicate only (soft): two-part articles look
+    alike by design."""
     by_doi = {}
     for e in entries:
         if e["doi"]:
@@ -204,8 +205,8 @@ def find_duplicates(entries):
             a, b = titled[i], titled[j]
             if a["doi"] and b["doi"]:
                 continue                    # both have DOIs: the DOI check above is authoritative
-            if a["year"] != b["year"]:
-                continue
+            if a["year"] and b["year"] and a["year"] != b["year"]:
+                continue                    # a missing year is a wildcard, not a mismatch
             sim = difflib.SequenceMatcher(None, norm(a["title"]), norm(b["title"])).ratio()
             if sim >= 0.93:
                 fuzzy.append((a["key"], b["key"], sim))
