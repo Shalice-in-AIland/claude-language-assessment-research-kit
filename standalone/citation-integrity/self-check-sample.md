@@ -4,9 +4,11 @@
 
 ## How to use it (2 minutes)
 
+*Before you trust the check with your own manuscript, watch it work on a sample whose answers you already know — you'll see what your tool can and can't verify. The full practice-run protocol, with follow-up probes and a scorecard, is in [`self-check-protocol.md`](self-check-protocol.md).*
+
 1. Open a new chat in any AI assistant that can search the web.
-2. Paste in [`citation-integrity-portable.md`](citation-integrity-portable.md) (or attach it).
-3. Paste **the passage and reference list below**.
+2. Paste the full text of [`citation-integrity-portable.md`](citation-integrity-portable.md) as your first message (paste, don't attach — some tools silently ignore attached files).
+3. As your second message, paste **the passage and reference list below**.
 4. Say: *"Follow the citation-integrity instructions above: check the citations in this passage against the reference list."*
 5. Compare what comes back against [`self-check-answer-key.md`](self-check-answer-key.md).
 
@@ -31,6 +33,6 @@ Bias, however, remains a live concern. GPT-4o's ratings diverge from human rater
 - Lumley, T. (2005). *Assessing second language writing: The rater's perspective.* Peter Lang.
 - Mizumoto, A., & Eguchi, M. (2023). Exploring the potential of using an AI language model for automated essay scoring. *Research Methods in Applied Linguistics, 2*(2), 100050. https://doi.org/10.1016/j.rmal.2023.100050
 - Petrov, D. Automated scoring and construct coverage: A meta-analysis. *Language Testing.*
-- Petrov, D. (2023). Automated scoring and construct coverage: A meta-analysis. *Language Testing, 40*(3), 512–540.
+- Petrov, D. (2023). Automated scoring and construct coverage: A meta-analysis. *Language Testing, 40*(3), 901–930.
 - Suhan, M., & Wolf, M. K. (2026). A comparative study of the human, automated scoring model, and GPT-4 ratings of young EFL students' writing. *Language Testing, 43*(1), 66–78. https://doi.org/10.1177/02655322251346860
 - Yamashita, T. (2025). Exploring potential biases in GPT-4o's ratings of English language learners' essays. *Language Testing, 42*(3), 344–358. https://doi.org/10.1177/02655322251329435
