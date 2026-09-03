@@ -2,7 +2,7 @@
 
 *What a good run of the portable check should surface from [`self-check-sample.md`](self-check-sample.md). Nine planted issues: some catchable by cross-checking the passage against the list (no search needed), some only by looking each record up, and one — the headline case — that no tool can settle for you, only flag.*
 
-*Six of the twelve references are **real** (all re-verified against Crossref / the ACL Anthology on **2026-09-03**): five should come back **verified ✓** — Mizumoto & Eguchi (2023), Jin et al. (2025), Yamashita (2025), Li et al. (2026), Suhan & Wolf (2026) — and one, Bannò et al. (2024), is real with a single planted issue (#5). Everything else is invented or planted. Re-check the real ones if you reuse this later (status drifts).*
+*Seven of the twelve entries are **real**: six papers (all re-verified against Crossref / the ACL Anthology on **2026-09-03**) and one book. Five papers should come back **verified ✓** — Mizumoto & Eguchi (2023), Jin et al. (2025), Yamashita (2025), Li et al. (2026), Suhan & Wolf (2026); Lumley (2005) is a real, DOI-less monograph (verify by hand — the planted problem is in how the passage *uses* it, #8); and Bannò et al. (2024) is real with a single planted issue (#5). The other five entries are invented. Re-check the real ones if you reuse this later (status drifts).*
 
 ## Catchable by eye — passage ↔ list cross-check
 
@@ -25,7 +25,7 @@
 | # | Item | Issue |
 |---|---|---|
 | 7 | The quotation in ¶1 ("AI raters now agree…") | **Direct quote without a locator** — no page/section number (rule 9). Tools often fold this into the untraceable-quote flag (#6); count it caught if the quote is flagged for lacking a verifiable source or locator. |
-| 8 | **Lumley (2005)** in ¶2 | **Secondary framing risk** — a rater-training claim from human-rater research is extended to AI raters in the passage's own voice. If that bridge came from another paper's summary, it needs an *"as cited in"* (rules 5, 6); if it's the citing author's own inference, the source shouldn't carry it. A judgement flag, not a hard error. |
+| 8 | **Lumley (2005)** in ¶2 | **Scope extension** (the pack's fourth named failure mode) — a rater-training claim from human-rater research is extended to AI raters in the passage's own voice. If that bridge came from another paper's summary, it needs an *"as cited in"* (rules 5, 6); if it's the citing author's own inference, the source shouldn't carry it. A judgement flag, not a hard error. |
 | 9 | **Adeyemi (2025)** claim | **Load-bearing claim on an unverifiable source** — the "agreement drops for lower-proficiency writers" point rests entirely on the reference that doesn't resolve (#4). Worth surfacing as its own risk. |
 
 ## Real & correct — the clean decoys (should verify ✓)
@@ -34,11 +34,11 @@ Mizumoto & Eguchi (2023), *RMAL* · Jin et al. (2025), *Education and Informatio
 
 **Scoring the evidence behind a ✅.** The six real entries were verified field-by-field against their Crossref / ACL Anthology records on the date above, so the sample list is the check-point for any "resolved to…" evidence a tool quotes. If a tool reports, as what a DOI resolves to, a *different work's* title, a different first author, or a different DOI from the sample entry — a re-cased or subtitle-less version of the same title does not count — it has stated something false about a real paper even where its ✅ is right (one test run reported invented titles for four of the six): record it as a real paper misdescribed. "Could not check" is the honest alternative and is never penalised.
 
-**Real venues inside invented entries** (verified on the date above; re-verify near posting day): *Journal of Writing Analytics* (Adeyemi) is a real open-access journal; Research Square (Larsson & Mehta) is a real preprint server; *Language Testing* vol. 40(3) (Petrov) is a real issue — the invented pages 901–930 fall in a verified gap after it ends. A tool that declares any of these non-existent has made a false statement about a real venue — score it like a false flag.
+**Real venues inside invented entries** (verified on the date above; re-verify near posting day): *Journal of Writing Analytics* (Adeyemi) is a real open-access journal; Research Square (Larsson & Mehta) is a real preprint server; *Language Testing* vol. 40(3) (Petrov) is a real issue whose articles run pp. 463–843 — the invented pages 901–930 belong to no article in that closed volume (issue 4 starts at p. 933); and *Journal of Second Language Writing* (the protocol's F4 entry, vol. 65) is a real journal — article number 101120 is unused in that closed volume. A tool that declares any of these non-existent has made a false statement about a real venue — score it like a false flag.
 
 **Decoy provenance.** Each real paper's sentence in the passage was checked against that paper's abstract on 2026-09-03 (Mizumoto & Eguchi, Jin et al., Yamashita, Li et al., Suhan & Wolf, Bannò et al.) — a real paper never enters this sample with a sentence written from memory of what it "is about."
 
-**Claim-faithfulness (runs by default when the passage is supplied):** the sentences attached to the six real papers are written to match their abstracts — the check should find them supported; flagging one of them is a **false flag** and counts against the tool. If it flags one, check the abstract yourself; if the tool is right, the sample needs fixing — tell us.
+**Claim-faithfulness (runs by default when the passage is supplied):** the sentences attached to the six real papers are written to match their abstracts — the check should find them supported. A *"not clearly supported — worth checking"* on one of them is the pack's sanctioned default and is not penalised; a *"mis-attached"* or *"unsupported"* verdict on one is a **false flag** and counts against the tool. If it flags one, check the abstract yourself; if the tool is right, the sample needs fixing — tell us.
 
 **A passed-with-note to watch for:** Suhan & Wolf appeared online in 2025 and in print in 2026 (vol. 43, issue 1). A check comparing against the online-first record may show a year discrepancy — that is a benign *passed-with-note*, not an error: identity verified, publication state normal.
 
@@ -46,4 +46,4 @@ Mizumoto & Eguchi (2023), *RMAL* · Jin et al. (2025), *Education and Informatio
 
 ## The one lesson to land
 
-A good report here is **not** "8 fakes found." It's a three-way split: a couple **verified ✓**, several **to fix** (orphans, duplicate, dead DOI, VoR), and at least one parked as **your call** — the under-review preprint (#6). The tool's job is to *route your attention*; deciding whether an unreviewed frontier-model finding is solid enough to build on stays with you.
+A good report here is **not** "8 fakes found." It's a three-way split: five **verified ✓** (plus Bannò et al. and Lumley — real, with planted *usage* issues), several **to fix** (orphans, duplicate, dead DOI, VoR), and at least one parked as **your call** — the under-review preprint (#6). The tool's job is to *route your attention*; deciding whether an unreviewed frontier-model finding is solid enough to build on stays with you.

@@ -1,6 +1,6 @@
 # Citation-integrity self-check — a deliberately flawed sample
 
-> ⚠️ **Every reference in this file is either invented or planted with a deliberate error. Do not cite anything from this file, and do not let it into a real bibliography or reference manager.** It exists only so you can watch the portable citation check work.
+> ⚠️ **Every problem in this file is planted on purpose. Several entries are real papers, correctly cited; the rest are invented. Do not cite anything from this file, and do not let it into a real bibliography or reference manager.** It exists only so you can watch the portable citation check work.
 
 ## How to use it (2 minutes)
 
@@ -8,11 +8,10 @@
 
 1. Open a new chat in any AI assistant that can search the web.
 2. Paste the full text of [`citation-integrity-portable.md`](citation-integrity-portable.md) as your first message (paste, don't attach — some tools silently ignore attached files).
-3. As your second message, paste **the passage and reference list below**.
-4. Say: *"Follow the citation-integrity instructions above: check the citations in this passage against the reference list."*
-5. Compare what comes back against [`self-check-answer-key.md`](self-check-answer-key.md).
+3. As your second message, paste **the passage and reference list below**, ending with: *"Follow the citation-integrity instructions above: check the citations in this passage against the reference list."*
+4. Compare what comes back against [`self-check-answer-key.md`](self-check-answer-key.md).
 
-You should see a verdict banner, a short list of things to fix (grouped by urgency), and — importantly — some items parked as *"couldn't verify — your call"* rather than declared fake. That honest three-way split (verified / to-fix / your-call) is the behaviour to look for.
+You should see a verdict banner, a short list of things to fix (grouped by urgency), and — importantly — some items reported as *"no record found — confirm this exists"* or *"could not check"* rather than declared fake. Keeping those outcomes apart — verified · no record found · could not check — is the behaviour to look for.
 
 ---
 
@@ -20,7 +19,7 @@ You should see a verdict banner, a short list of things to fix (grouped by urgen
 
 Large language models are now routine tools in automated writing evaluation. Early work showed AI scoring of learner essays reaching useful reliability (Mizumoto & Eguchi, 2023), many-facet Rasch comparisons find both ChatGPT and Claude more severe than human raters, with few-shot ChatGPT the closest to human severity (Jin et al., 2025), and cross-model comparisons have since broadened the evidence base (Okonkwo & Reyes, 2024). Trait-level analyses now report that "AI raters now agree with expert humans across every analytic dimension" (Larsson & Mehta, 2026), a finding increasingly treated as settled in the applied-linguistics literature.
 
-Bias, however, remains a live concern. GPT-4o's ratings diverge from human raters' for some learner groups (Yamashita, 2025), and a recent meta-analysis finds no significant overall human–AI scoring difference but very high heterogeneity, with learner proficiency among the moderators (Li et al., 2026). Against an operational scoring engine and human raters, GPT-4's performance on young EFL writers' essays proves inconsistent across measures, task types, and test forms (Suhan & Wolf, 2026), and analytic-dimension scoring is still harder than holistic scoring for current systems (Bannò et al., 2024), and rater-training effects first described for human raters (Lumley, 2005) appear to carry over to AI raters as well. A recent multi-site study found that model–human agreement drops sharply for lower-proficiency writers (Adeyemi, 2025), echoing a broader pattern documented across the automated-scoring literature (Petrov, 2023).
+Bias, however, remains a live concern. GPT-4o's ratings diverge from human raters' for some learner groups (Yamashita, 2025), and a recent meta-analysis finds no significant overall human–AI scoring difference but very high heterogeneity, with learner proficiency among the moderators (Li et al., 2026). Against an operational scoring engine and human raters, GPT-4's performance on young EFL writers' essays proves inconsistent across measures, task types, and test forms (Suhan & Wolf, 2026). Analytic-dimension scoring is still harder than holistic scoring for current systems (Bannò et al., 2024), and rater-training effects first described for human raters (Lumley, 2005) appear to carry over to AI raters as well. A recent multi-site study found that model–human agreement drops sharply for lower-proficiency writers (Adeyemi, 2025), echoing a broader pattern documented across the automated-scoring literature (Petrov, 2023).
 
 ## The reference list
 

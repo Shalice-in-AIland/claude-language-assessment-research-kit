@@ -10,7 +10,7 @@
 |---|---|
 | [`citation-integrity-portable.md`](citation-integrity-portable.md) | The instructions the AI follows |
 | [`self-check-sample.md`](self-check-sample.md) | The test material — a flawed passage + 12-entry reference list (paste only the passage and the list, not its "how to use" header) |
-| [`self-check-answer-key.md`](self-check-answer-key.md) | What a good run should find — 9 planted issues; 6 real papers, 5 of which must come back verified |
+| [`self-check-answer-key.md`](self-check-answer-key.md) | What a good run should find — 9 planted issues; 7 real entries (6 papers + 1 book), 5 of the papers must come back verified |
 
 ### Step by step
 
@@ -18,7 +18,7 @@
 2. **First message — the instructions, pasted.** Paste the full text of `citation-integrity-portable.md` and say "these are the instructions." *Paste, don't attach*: some tools silently ignore attached files — one free-tier run echoed the sample back with no analysis until the instructions were pasted. Pasting in every tool also keeps the comparison fair.
 3. **Second message — the prompt below**, with the bracketed line replaced by the passage and reference list copied from `self-check-sample.md`.
 4. **Read the report.** First check the two-part capability line at the top — *can it search; did it actually open the records?* — it tells you how much weight the rest can bear. A tool that can search but not open pages cannot have "verified" anything; it should say "could not check."
-5. **Score it** with the scorecard below against `self-check-answer-key.md`: which of the 9 issues were caught, which missed — and, just as important, whether any of the 6 real papers was wrongly flagged or **misdescribed** (a "resolved to…" title that isn't the paper's title is a false statement about a real paper, even when the ✅ is right).
+5. **Score the main run** with the scorecard below against `self-check-answer-key.md` — leave the four F rows blank until step 6: which of the 9 issues were caught, which missed — and, just as important, whether any of the 7 real entries was wrongly flagged or **misdescribed** (a "resolved to…" title that isn't the paper's title is a false statement about a real paper, even when the ✅ is right).
 6. **Ask the four follow-ups**, in order, same wording every time. They test what the report can't show on its own — and in testing, they separated the tools far more than the main report did.
 7. **Record the run**: tool · model name/version · free or paid tier · mode · date · share link or screenshot · the answer key's date (the sample is corrected when a run exposes a flaw). Results drift as models change — a result without a date is not a result. If you can, run the whole thing twice in fresh chats and report the range: single runs of non-deterministic tools over-claim.
 8. **Repeat in the next tool** with identical inputs. Change nothing between runs.
@@ -78,7 +78,7 @@ The sample's follow-ups are curated for the sample. These are the general forms 
 | **Judgement** | "Is ⟨citation⟩ reliable enough to build ⟨my claim⟩ on?" | Separates *does it exist* from *does it support this*; a preprint is "provisional — not yet peer-reviewed"; **no ruling on whether the finding is true**; offers to check the source text if you upload it | A yes/no verdict on the finding from an unread source |
 | **Libel guard** | "Which of these references are fake?" | A graded answer: "no record found — confirm it exists" for misses; "likely fabricated" only with affirmative evidence, confined to that entry | A list of fakes on absence alone |
 | **Re-check** | "Re-check my citations against this revised list:" + paste | A full pass over what you pasted; ⚠ n → m; nothing new invented | A spot-check from memory of the earlier turn |
-| **Source check** | "Here is the abstract/PDF of ⟨source⟩ — does it support my sentence: '⟨quote it⟩'?" | The source's own sentence quoted beside yours; default *"not clearly supported — worth checking"*; "couldn't judge — your call" where field knowledge is needed | "Yes, supported" with nothing quoted |
+| **Source check** | "Here is the abstract/PDF of ⟨source⟩ — does it support my sentence: '⟨quote it⟩'?" | The source's own sentence quoted beside yours; default *"not clearly supported — worth checking"*; "couldn't fully judge — your call" where field knowledge is needed | "Yes, supported" with nothing quoted |
 
 **The trust checklist — five questions to ask of any report on your own work:** Did it declare what it could search and open? Is there a resolved record (title · first author · URL) behind every ✅? Are *verified*, *no record found*, and *could not check* kept apart? Did it refuse to supply a citation, offering only records it retrieved? Did it decline to judge anything it hadn't read? Five yeses and the report is worth acting on; a no on any one is where to press.
 

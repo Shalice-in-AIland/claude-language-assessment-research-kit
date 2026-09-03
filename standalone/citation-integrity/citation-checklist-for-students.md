@@ -18,7 +18,7 @@
 - ☐ **Every DOI resolves — and resolves to *your* reference.** Paste each DOI after `https://doi.org/` and confirm the landing page matches your entry's title, authors, and year. A DOI that resolves to a *different* work is a real and common error. *(rules 2, 3)*
 - ☐ **No cited paper has been retracted.** Search each key title with "retraction" (the Retraction Watch database is free). If a paper you rely on was retracted, remove it, replace it, or cite the retraction itself — knowingly citing retracted work as live findings is a serious fault. *(rule 14)*
 - ☐ **Text and reference list match, both ways.** Every in-text citation appears in the list; everything in the list is cited somewhere.  *(rule 11)*
-- ☐ **No entry is missing its year** (it will print as "n.d.") **or its DOI** where one exists. *(rules 3, 10)*
+- ☐ **No entry is missing its year** (it will print as "n.d.") **or its DOI** where one exists. *(rules 3, 4)*
 - ☐ **Preprints are labelled as preprints** — and checked for a published version to cite instead. *(rules 4, 14)*
 - ☐ **Secondary citations are declared** ("as cited in"), not silently converted into first-hand ones. *(rules 5, 6)*
 - ☐ **Your strongest claims stand on sources that really say it.** For your 3–5 most load-bearing citations, re-open the source and re-read the passage. Does it support *your specific sentence* — in the authors' own terms? And is the evidence strong enough to carry it alone? Then let the companion AI file check the *rest* against their abstracts — mis-attached claims hide in the routine supporting citations, not only the load-bearing ones. *(rules 1, 7)*
@@ -26,10 +26,10 @@
 
 ## Letting an AI do the mechanical parts
 
-Every un-ticked box above is checkable in minutes by an AI assistant: paste the companion file [`citation-integrity-portable.md`](citation-integrity-portable.md) into your AI chat with your reference list and say *"check my citations."* You'll get an action-first report — problems named, fixes attached, decisions left to you. The judgement boxes — what to cite, what a source really says — remain yours: that is not a limitation of the tools; it is what authorship means.
+The mechanical boxes above are checkable in minutes by an AI assistant — the judgement boxes remain yours: paste the companion file [`citation-integrity-portable.md`](citation-integrity-portable.md) into your AI chat with your reference list and say *"check my citations."* You'll get an action-first report — problems named, fixes attached, decisions left to you. The judgement boxes — what to cite, what a source really says — remain yours: that is not a limitation of the tools; it is what authorship means.
 
 ---
 
-*Reference: Jay, M., Abi-Jaoude, J., Straus, S. E., Eskander, A., Lipscombe, L., Dharma, C., & Yu, C. (2026). Moving towards acceleration with accountability: A conceptual framework for AI-assisted systematic reviews. *Global Epidemiology, 12*, 100282. https://doi.org/10.1016/j.gloepi.2026.100282*
+Reference: Jay, M., Abi-Jaoude, J., Straus, S. E., Eskander, A., Lipscombe, L., Dharma, C., & Yu, C. (2026). Moving towards acceleration with accountability: A conceptual framework for AI-assisted systematic reviews. *Global Epidemiology, 12*, 100282. https://doi.org/10.1016/j.gloepi.2026.100282
 
 *From [CLARK — the Claude Language Assessment Research Kit](https://github.com/Shalice-in-AIland/claude-language-assessment-research-kit) (free, open-source, MIT · DOI 10.5281/zenodo.21411273). Supervisors: adapt freely with attribution.*
