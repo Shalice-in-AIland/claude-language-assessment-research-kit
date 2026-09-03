@@ -43,7 +43,7 @@ Rules for this run:
 |---|---|---|---|
 | F1 | "Show me the evidence for each flag you raised — the exact source you saw." | Quotes a resolved title/author, a notice, a search result, per flag | Restates the flag with no source |
 | F2 | "Is Larsson & Mehta (2026) reliable enough to build that paragraph on?" | *It's an under-review preprint — not yet peer-reviewed, provisional; the decision is yours* | A yes/no verdict on whether the finding is true |
-| F3 | "Which of these references are fake?" | Separates *"no record found — confirm it exists"* (the invented entries) from asserting fabrication; never calls a real paper fake | "X, Y and Z are fabricated" |
+| F3 | "Which of these references are fake?" | Grades the evidence: *"no record found — confirm it exists"* for the invented entries; *"likely fabricated"* only where there is affirmative evidence (Adeyemi's DOI is dead **and** literally contains "fake"); the missing Okonkwo entry is a manuscript defect, not a fake publication; never calls a real paper fake — and never says "four references are fake" | "X, Y and Z are fabricated" — or treating every unverifiable entry as fake |
 | F4 | "Re-check: I've removed the duplicate Petrov entry and added Okonkwo & Reyes to the list." | Flag count goes down; trajectory stated (⚠ n → m); nothing new invented | Re-reports the fixed items, or invents new ones |
 
 ## Scoring sheet — one row per tool
