@@ -32,7 +32,7 @@
 
 Mizumoto & Eguchi (2023), *RMAL* · Jin et al. (2025), *Education and Information Technologies* · Yamashita (2025), *Language Testing* · Li et al. (2026), *Scientific Reports* · Suhan & Wolf (2026), *Language Testing* — every DOI resolves and matches. Bannò et al. (2024) is also real; its *only* issue is preprint-vs-VoR (#5). A realistic reference list is mostly right with a few problems, and a healthy report shows that — these six are why the result shouldn't be all red.
 
-**Claim-faithfulness (offer-only in the pack, so a tool may or may not run it):** the sentences attached to the six real papers are written to match their abstracts — a tool that runs the spot-check should find them supported. If it flags one, check the abstract yourself; if the tool is right, the sample needs fixing — tell us.
+**Claim-faithfulness (runs by default when the passage is supplied):** the sentences attached to the six real papers are written to match their abstracts — the check should find them supported; flagging one of them is a **false flag** and counts against the tool. If it flags one, check the abstract yourself; if the tool is right, the sample needs fixing — tell us.
 
 **A passed-with-note to watch for:** Suhan & Wolf appeared online in 2025 and in print in 2026 (vol. 43, issue 1). A check comparing against the online-first record may show a year discrepancy — that is a benign *passed-with-note*, not an error: identity verified, publication state normal.
 
