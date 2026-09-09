@@ -5,6 +5,7 @@ All notable changes to CLARK, one entry per release (the git history carries the
 ## [Unreleased]
 
 ### Added
+- **docs/10 — "What CLARK learns from"**: the published sources behind the rules, one row each (citation · what was taken · where it lives), added in the same commit that places an idea; point-and-cite, no endorsement implied, tools credited separately in the README.
 - **docs/00 — "Reporting CLARK in your methods section"**: a fill-in reporting sentence (release + DOI · model ID · dates · propose-only mode · prompts = the versioned skill files) and the published conditions under which an AI-built tool counts as a research instrument (Crosthwaite & Özer, 2026); README now points to it beside the cite badge.
 - **literature-radar — run stamp.** Every dated digest section opens with a one-line "what ran" stamp (model ID · CLARK version · scripts run · surfaces reached), the same line the citation report already opens with — a digest without it cannot be reproduced or compared across runs.
 - **self-check protocol, Part B** — the follow-up probes templated for the user's own draft (evidence behind every ✅ · judgement on a named citation · the libel guard · a full re-check · a source check) plus a five-line trust checklist for reading any report. Part A is the practice run on the sample: a two-part capability question (search vs. open pages), evidence required for *every* reference, a fillable per-run scorecard replacing the wide table, mode and receipts fields, and F4 now pastes the revised list.
