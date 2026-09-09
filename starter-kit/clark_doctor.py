@@ -27,7 +27,7 @@ import sys
 HERE = pathlib.Path(__file__).parent
 EXPECTED = ["render.sh", "render.bat", "style.csl", "resolve_check.py", "check_retractions.py",
             "vor_check.py", "matrix_to_vault.py", "review_audit.py", "manuscript_audit.py",
-            "pdf_probe.py"]
+            "pdf_probe.py", "notice_scan.py"]
 
 
 def find_pandoc():
@@ -82,9 +82,9 @@ def main():
 
     has_mupdf = importlib.util.find_spec("fitz") is not None
     report("OK" if has_mupdf else "NOTE", "PyMuPDF (optional)",
-           "installed — pdf_probe gives precise per-page reports and pages can be rendered to images"
+           "installed — pdf_probe gives precise per-page reports, notice_scan attributes hits to pages, and pages can be rendered to images"
            if has_mupdf else
-           "not installed — pdf_probe falls back to the stdlib heuristic; install with "
+           "not installed — pdf_probe falls back to the stdlib heuristic and notice_scan to a whole-file scan; install with "
            "'pip install --user pymupdf' for per-page precision and page rendering (optional)")
 
     missing = [f for f in EXPECTED if not (HERE / f).exists()]

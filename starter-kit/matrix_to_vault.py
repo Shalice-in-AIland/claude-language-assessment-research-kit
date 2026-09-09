@@ -113,6 +113,7 @@ CANON = {  # canonical key -> header prefix (case-insensitive)
     "construct": "construct", "section": "manuscript", "read": "read",
     "keypoints": "key points", "flags": "flags", "citekey": "cite key",
     "studytype": "study type",  # optional column; skipped gracefully when absent
+    "recordstate": "record_state", "lastverified": "last_verified",  # optional (radar Mode C); skipped when absent
 }
 
 
@@ -123,7 +124,7 @@ def find_header(rows):
             mapping = {}
             for key, prefix in CANON.items():
                 for j, c in enumerate(cells):
-                    if c == prefix or c.startswith(prefix):
+                    if c == prefix or c.startswith(prefix) or c.replace(" ", "_").startswith(prefix):
                         mapping[key] = j
                         break
             missing = [k for k in ("citekey", "theme", "authors") if k not in mapping]
@@ -193,7 +194,9 @@ def note_text(vals, theme_hub, hub_links, today, pub_status=None):
         f"key-paper: {str(key_paper).lower()}",
         f"matrix-row: {vals['num']}",
     ] + ([f'study-type: "{sanitize(vals["studytype"])}"'] if vals.get("studytype") else []) \
-      + ([f'publication: "{pub_status}"'] if pub_status else []) + [
+      + ([f'publication: "{pub_status}"'] if pub_status else []) \
+      + ([f'record-state: "{sanitize(vals["recordstate"])}"'] if vals.get("recordstate") else []) \
+      + ([f'last-verified: "{sanitize(vals["lastverified"])}"'] if vals.get("lastverified") else []) + [
         "---",
     ]
     key = vals["citekey"]
@@ -260,6 +263,7 @@ def main():
     made, no_key, unlisted, skipped = 0, 0, {}, []
     theme_use, hub_use = {}, {}
     tier_counts, read_counts, key_rows, care_rows, preprint_keys, studytype_counts = {}, {}, [], [], [], {}
+    state_rows = []  # rows whose record_state is set and not 'normal' (radar Mode C)
 
     for idx, row in enumerate(rows[h + 1:], h + 2):
         get = lambda k: str(row[col[k]]).strip() if k in col and col[k] < len(row) and row[col[k]] is not None else ""
@@ -289,6 +293,9 @@ def main():
             care_rows.append((vals["citekey"], sanitize(vals["flags"])[:90]))
         if bib_status.get(vals["citekey"]) == "preprint":
             preprint_keys.append(vals["citekey"])
+        rs = (vals.get("recordstate") or "").strip()
+        if rs and rs.lower() != "normal":
+            state_rows.append((vals["citekey"], rs, (vals.get("lastverified") or "").strip()))
         if vals.get("studytype"):
             base = vals["studytype"].split("(")[0].strip()  # count by controlled prefix; subtype stays on the note
             studytype_counts[base] = studytype_counts.get(base, 0) + 1
@@ -343,6 +350,8 @@ def main():
         *[f"- [[{k}]] — {a}" for k, a in key_rows], "",
         f"## Cite-with-care register ({len(care_rows)})",
         *[f"- [[{k}]] — {f}" for k, f in care_rows], "",
+        *(([f"## Record state — rows not in state normal ({len(state_rows)}) — corrected · retracted · VoR-updated (radar Mode C)",
+           *[f"- [[{k}]] — {s}" + (f" — last verified {d}" if d else "") for k, s, d in state_rows], ""]) if state_rows else []),
         "## Themes (controlled vocabulary)",
         *table({f"[[Theme — {sanitize(h)}]]": len(m) for h, m in theme_use.items()}), "",
         "## Methods & tools (hub terms)",

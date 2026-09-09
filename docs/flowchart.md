@@ -8,7 +8,7 @@ Seven skills along one research lifecycle — six stations plus the maintenance 
 
 ```mermaid
 flowchart LR
-    A["<b>1 · DISCOVER</b><br/>literature-radar<br/>🤖 scheduled sweeps, strict dedup<br/>👤 you approve keepers"]
+    A["<b>1 · DISCOVER</b><br/>literature-radar<br/>🤖 scheduled sweeps, strict dedup<br/>🤖 corpus-state watch: corrections · retractions · VoR<br/>👤 you approve keepers & changes"]
     B["<b>2 · REVIEW</b><br/>literature-review<br/>🤖 drafts triage + Obsidian views<br/>👤 you rule tier & ★KEY"]
     C["<b>3 · WRITE</b><br/>zotero-citations · writing-polish<br/>🤖 renders to Word & proposes polish<br/>👤 you write & accept each edit"]
     D["<b>4 · CHECK</b><br/>citation-integrity<br/>🤖 runs the checks: DOI resolve+match · retractions · preprint→VoR<br/>👤 you fix in Zotero"]

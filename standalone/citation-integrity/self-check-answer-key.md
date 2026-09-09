@@ -42,7 +42,7 @@ Mizumoto & Eguchi (2023), *RMAL* · Jin et al. (2025), *Education and Informatio
 
 **A passed-with-note to watch for:** Suhan & Wolf appeared online in 2025 and in print in 2026 (vol. 43, issue 1). A check comparing against the online-first record may show a year discrepancy — that is a benign *passed-with-note*, not an error: identity verified, publication state normal.
 
-**A second passed-with-note (real, verified 2026-09-03):** Yamashita (2025) carries a publisher correction notice — *"Correction (September 2025): There are minor changes to data in 'Methods' section of this article since its online publication"* — on the SAGE article page, with **no corresponding update registered in Crossref**. A tool that surfaces it is doing well; a tool that misses it isn't failing (index-based checks can't see it). Either way it is a *publication-state note* — identity verified, correction noted — not a flag, and never a retraction.
+**A second passed-with-note (real, verified 2026-09-03):** Yamashita (2025) carries a publisher correction notice — *"Correction (September 2025): There are minor changes to data in 'Methods' section of this article since its online publication"* — inside a collapsed author-information panel on the SAGE article page (not visible on load) and printed on the first page of the corrected version-of-record PDF, with **no corresponding update registered in Crossref**. A tool that reads the PDF's first page or expands the page's panels can surface it and is doing well; a tool that only queries an index or reads the page as loaded isn't failing (verified 2026-09-07). Either way it is a *publication-state note* — identity verified, correction noted — not a flag, and never a retraction.
 
 ## The one lesson to land
 

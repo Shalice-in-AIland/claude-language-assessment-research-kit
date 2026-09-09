@@ -54,6 +54,7 @@ FIELD_LABELS = [
     ("theme", "Theme"), ("primary", "Primary use"), ("relevance", "Relevance tier"),
     ("construct", "Construct link"), ("section", "Manuscript section"), ("read", "Read status"),
     ("keypoints", "Key points / notes"), ("flags", "Flags"), ("citekey", "Cite key"),
+    ("recordstate", "Record state"), ("lastverified", "Last verified"),  # optional; blank rows omit them
 ]
 
 SCHEMA = ('{"tier_verdict":"agree|disagree","tier_suggested":"<tier or same>",'
@@ -163,7 +164,7 @@ def main():
     )
 
     def user_msg(v):
-        lines = [f"{label}: {v[k]}" for k, label in FIELD_LABELS if v[k]]
+        lines = [f"{label}: {v.get(k)}" for k, label in FIELD_LABELS if v.get(k)]
         lines.append("KEY marker present: " + ("yes (★)" if "★" in (v["keypoints"] + v["flags"]) else "no"))
         lines.append("Audit questions: 1) Is the Relevance tier consistent with the tier definitions? "
                      "2) Is the KEY marking (present or absent) justified under the KEY rule? "

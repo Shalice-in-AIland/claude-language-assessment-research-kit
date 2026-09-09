@@ -6,6 +6,8 @@ Everything needed to render a Markdown draft into Word with automatic citations 
 |---|---|
 | `render.sh` / `render.bat` | The one-command renderer (Mac/Linux · Windows) |
 | `check_retractions.py` | Retraction check for your whole library — every DOI queried against Crossref + the Retraction Watch database (integrity rule 14): `python3 check_retractions.py library.bib` |
+| `notice_scan.py` | First-page / last-page scan of the PDFs you hold for printed publisher notices — correction · corrigendum · erratum · expression of concern · retraction — the ones that never reach Crossref: `python3 notice_scan.py Literature/` (folder or files; `--selftest` proves the scan on your machine). A clean result describes the copy you hold, not the record |
+| `pdf_probe.py` | "Can this PDF be read, and how?" — TEXT-RICH / TEXT-SPARSE / IMAGE-ONLY / ENCRYPTED verdict and the pages to read as images: `python3 pdf_probe.py paper.pdf` |
 | `resolve_check.py` | Resolve + consistency check (integrity rules 1–3): every DOI *resolves* to a real Crossref record **and** its title/year/author *match* your entry — catches dead DOIs and mis-attached / "Frankenstein" references; proposes DOIs for DOI-less entries (verify, never auto-applied): `python3 resolve_check.py library.bib` |
 | `style.csl` | The citation style — ships as **APA 7th**; swap for any style from [zotero.org/styles](https://www.zotero.org/styles) |
 | `library.bib` | **Sample** bibliography (3 real entries) — replace with your own Zotero auto-export |
