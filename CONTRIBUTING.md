@@ -16,6 +16,7 @@ Thank you for considering it. CLARK runs on the same rule it enforces — **flag
 - **Provenance:** criteria and venue content trace to published/publisher sources — never an invented rubric. Published instruments are summarized and cited, never reproduced. Nothing unpublished or privately shared without the owner's written consent.
 - **Field-neutral examples** in all user-facing docs; no personal-project content, credentials, or local paths.
 - Scripts stay **standard-library-only** (the no-installs promise).
+- **Prompts are the instrument — re-test after every prompt change.** A `SKILL.md` or standalone-pack revision is not finished until its known-answer material has been re-run: for citation-integrity, the self-check sample against its answer key; for other skills, the skill's own worked example. Re-testing earlier functionality after each prompt cycle is the reproducibility check methods work now asks of AI-built instruments (Crosthwaite & Özer, 2026, doi:10.1016/j.rmal.2026.100356).
 - Acknowledgments never imply endorsement without the person's explicit agreement on the wording.
 
 ## Versioning & releases

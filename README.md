@@ -25,7 +25,7 @@ Research skills for the language-assessment and applied-linguistics community. F
 - **v1.1.0 · 2026-07-23 — citation integrity goes standalone.** The kit's most-requested check, now extractable: a self-contained edition for **any AI chat** and a printable practice checklist for research students and their supervisors — no repo download, no setup. Take it: [`standalone/citation-integrity/`](standalone/citation-integrity/README.md) · [release notes](https://github.com/Shalice-in-AIland/claude-language-assessment-research-kit/releases/tag/v1.1.0) · DOI [10.5281/zenodo.21504577](https://doi.org/10.5281/zenodo.21504577)
 - **🧭 [CLARK Field Guides](field-guides/README.md)** — expert-curated domain packs the skills consume: a domain's venues, reviewer criteria, and review vocabularies, curated by a named expert and **citable with its own DOI** (the skills are the verbs; the guides are the nouns). The founding guide (Automated Writing Evaluation) is in preparation; **experts from any corner of the field are invited to curate one** — listening assessment, item writing, young learners… — at whichever of the three contribution rungs fits, from "cite my published work" to full co-curatorship.
 
-*Full history: [CHANGELOG.md](CHANGELOG.md) — every release is archived on Zenodo.*
+*Full history: [CHANGELOG.md](CHANGELOG.md) — every release is archived on Zenodo. Citing CLARK in a paper: [docs/00 → Reporting CLARK in your methods section](docs/00-using-clark-in-your-project.md#reporting-clark-in-your-methods-section).*
 
 ---
 

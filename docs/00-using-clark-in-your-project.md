@@ -32,6 +32,14 @@ Everything the skills create — conventions, matrices, notes, digests, review f
 1. **One Claude Code session per project, opened at that project's folder.** Claude loads the folder's own `CLAUDE.md`, conventions, and permissions — your assessment project's context, not another project's. Keep a separate session for the CLARK folder itself only if you're modifying CLARK.
 2. **Public and private stay structurally apart.** CLARK is public-facing; your manuscripts, review matrices, and (above all) anything you review *for a journal* are not. Working in per-project sessions makes that boundary structural rather than something to remember: nothing from your research folders can drift into a repo you might push, and the skills' confidential outputs (notes, plans) stay beside the manuscripts they quote. A one-page `CLAUDE.md` in your project folder (ask Claude to draft one) tells every future session what the project is and where its rules live.
 
+## Reporting CLARK in your methods section
+
+**Say: _"draft my CLARK reporting sentence"_** — Claude fills in the release, model, and dates from the session. Reviewers and editors increasingly ask what AI did in a study and how it was controlled, and CLARK is built so the answer is short and checkable: every prompt it runs is a public, versioned `SKILL.md`; the elicitation conditions are your `review-conventions.md`; nothing is applied without your approval. Methods work in applied linguistics now sets out the conditions under which an AI-built tool counts as a research instrument at all — constructs operationalised in the prompts, elicitation conditions documented, prompt iterations recorded, code open (Crosthwaite & Özer, 2026, https://doi.org/10.1016/j.rmal.2026.100356) — and CLARK meets them by construction. The sentence that covers it:
+
+> Literature screening and citation checks used CLARK v⟨X.Y.Z⟩ (Liu, 2026; https://doi.org/10.5281/zenodo.21411273), run in Claude Code with ⟨model ID⟩ between ⟨dates⟩. The ⟨skill names⟩ skills operated in propose-only mode: every inclusion, matrix edit, and reference correction was applied by the author. The prompts are the versioned skill files in the cited release; the project's screening rules are archived with the manuscript as `review-conventions.md`.
+
+**You should see:** the release tag matching the version badge on CLARK's README, the model ID exactly as your session reports it, and the conventions file saved beside the manuscript. If the venue wants a formal AI-use declaration, the [student checklist](../standalone/citation-integrity/citation-checklist-for-students.md) lists what a complete one contains.
+
 ## Updating CLARK later
 
 Ask Claude, in your CLARK-folder session: *"check for and fetch the latest CLARK."* Your projects don't change — conventions files and matrices are yours; only the toolkit refreshes.

@@ -22,7 +22,7 @@
 - ☐ **Preprints are labelled as preprints** — and checked for a published version to cite instead. *(rules 4, 14)*
 - ☐ **Secondary citations are declared** ("as cited in"), not silently converted into first-hand ones. *(rules 5, 6)*
 - ☐ **Your strongest claims stand on sources that really say it.** For your 3–5 most load-bearing citations, re-open the source and re-read the passage. Does it support *your specific sentence* — in the authors' own terms? And is the evidence strong enough to carry it alone? Then let the companion AI file check the *rest* against their abstracts — mis-attached claims hide in the routine supporting citations, not only the load-bearing ones. *(rules 1, 7)*
-- ☐ **The venue's AI-use policy is checked and your declaration written**, if you used AI anywhere in the work. A complete statement names the tool and model version, what it was used for (which stage of the work), and how you verified its output — the elements methodologists now ask for (Jay et al., 2026). *(rule 15)*
+- ☐ **The venue's AI-use policy is checked and your declaration written**, if you used AI anywhere in the work. A complete statement names the tool and model version, what it was used for (which stage of the work), and how you verified its output — the elements methodologists now ask for (Jay et al., 2026). For a published example in applied linguistics, see the *Generative AI statement* in Crosthwaite & Özer (2026, https://doi.org/10.1016/j.rmal.2026.100356): tools, versions, and the exact uses, in two sentences. *(rule 15)*
 
 ## Letting an AI do the mechanical parts
 
