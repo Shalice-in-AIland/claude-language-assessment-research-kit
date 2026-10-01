@@ -14,22 +14,32 @@ consistency with the project's rules; it does not certify truth, and it never
 replaces the scholar's reading.
 
 Reproducibility (the project's own §-reproducibility doctrine, applied to us):
-model ID, temperature, and prompt version are PINNED in review-conventions.md
-(## Audit section) and stamped into every report, along with measured token
-usage and — if prices are configured — the actual spend.
+model ID, request format, sampling control (an effort or a temperature) and
+prompt version are PINNED in review-conventions.md (## Audit section) and stamped
+into every report, along with measured token usage and — if prices are
+configured — the actual spend. The same prompt sent through a different API or a
+different effort is a different run, so none of them changes mid-census.
 
 Conventions ## Audit section (all bullets '- key: value'):
   - model: deepseek-v4-pro
   - base-url: https://api.deepseek.com/v1
   - key-env: DEEPSEEK_API_KEY          # env var NAME; the key itself never appears in any file Claude reads
   - temperature: 0
+  - api: chat                          # optional: chat (default) | responses — see llm_api.py
+  - max-output-tokens: 25000           # optional cap; OpenAI suggests reserving >=25,000 for
+                                       #   reasoning + output. Omit for the model's own maximum.
   - prompt-version: v1
   - price-in: 0.435                    # optional, USD per 1M input tokens — enables spend reporting
   - price-out: 0.87                    # optional, USD per 1M output tokens
+    # The two figures above are an ILLUSTRATION ONLY, and a dated one: they are a single flat
+    # rate, while some providers (DeepSeek among them) now bill peak and off-peak separately.
+    # Read your provider's current rate card the day you pin these, and note which tier they
+    # assume — the spend line in the report is only as good as these two numbers.
 
 Usage:
   python3 review_audit.py <matrix.xlsx|.csv> --conventions review-conventions.md
-                          [--sheet <name>] [--limit N] [--only-key]
+                          [--sheet <name>] [--limit N] [--only-key] [--citekeys k1,k2]
+                          [--effort <level>] [--api chat|responses]
                           [--out "Review Audit — DATE.md"] [--dry-run]
 
 Start with a pilot:  --limit 3  (measures real token usage; extrapolate before the full run).
@@ -43,11 +53,16 @@ import pathlib
 import re
 import sys
 import time
-import urllib.error
-import urllib.request
 
-sys.path.insert(0, str(pathlib.Path(__file__).parent))
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from matrix_to_vault import CANON, find_header, read_csv, read_xlsx  # noqa: E402
+# one request/parse implementation, shared with manuscript_audit.py, so the two cannot drift apart
+try:
+    import llm_api  # noqa: E402
+except ModuleNotFoundError:
+    sys.exit("this script now needs llm_api.py, which belongs beside it in the starter kit. "
+             "Copy the current starter-kit/llm_api.py into this folder, then run "
+             "`python3 clark_doctor.py` to check the rest of the kit is complete.")
 
 FIELD_LABELS = [
     ("num", "Matrix row #"), ("authors", "Authors (Year)"), ("focus", "Short focus"),
@@ -79,24 +94,12 @@ def parse_audit_config(path):
             continue
         if in_audit and line.strip().startswith("- ") and ":" in line:
             k, v = line.strip()[2:].split(":", 1)
-            cfg[k.strip().lower()] = v.split("#")[0].strip()
+            # Drop trailing comments AND the template's own ⟨explanatory⟩ annotations, then
+            # ignore the key entirely if nothing is left: an unfilled template line is not a value.
+            v = v.split("#")[0].split("\u27e8")[0].strip()
+            if v:
+                cfg[k.strip().lower()] = v
     return cfg, text
-
-
-def call_model(base_url, key, model, params, system, user, timeout=180):
-    body = {"model": model,
-            "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}]}
-    body.update(params)  # {"reasoning_effort": ...} for reasoning models; {"temperature": ...} otherwise
-    req = urllib.request.Request(
-        base_url.rstrip("/") + "/chat/completions",
-        data=json.dumps(body).encode(),
-        headers={"Content-Type": "application/json", "Authorization": f"Bearer {key}"},
-    )
-    with urllib.request.urlopen(req, timeout=timeout) as r:
-        body = json.loads(r.read().decode())
-    content = body["choices"][0]["message"]["content"]
-    usage = body.get("usage", {})
-    return content, usage.get("prompt_tokens", 0), usage.get("completion_tokens", 0)
 
 
 def parse_verdict(content):
@@ -112,8 +115,12 @@ def main():
     ap.add_argument("--limit", type=int, help="audit only the first N eligible rows (pilot mode)")
     ap.add_argument("--only-key", action="store_true", help="audit only rows carrying the ★ KEY marker")
     ap.add_argument("--citekeys", help="comma-separated citekeys to audit (targeted re-runs / A-B comparisons)")
-    ap.add_argument("--effort", choices=["low", "medium", "high"],
-                    help="override the conventions' reasoning effort for this run (logged in the report)")
+    ap.add_argument("--effort",
+                    help="override the conventions' reasoning effort for this run (logged in the report). "
+                         f"Known values: {' | '.join(llm_api.KNOWN_EFFORTS)} — support is model-dependent "
+                         "and the provider is the authority, so anything is passed through")
+    ap.add_argument("--api", type=str.lower, choices=list(llm_api.APIS),
+                    help="override the conventions' request format for this run (logged in the report)")
     ap.add_argument("--out", help="report path (default: 'Review Audit — <date>.md' in the current folder)")
     ap.add_argument("--dry-run", action="store_true", help="show the request plan and payload sizes; call nothing")
     a = ap.parse_args()
@@ -122,12 +129,33 @@ def main():
     model = cfg.get("model")
     base_url = cfg.get("base-url")
     key_env = cfg.get("key-env", "")
-    temperature = float(cfg.get("temperature", "0"))
+    def num(key, cast=float):
+        """A pinned number, or a legible config error instead of a traceback."""
+        try:
+            return cast(cfg[key])
+        except (ValueError, TypeError):
+            sys.exit(f"config error: '- {key}: {cfg[key]}' in the conventions' ## Audit block is not a number")
+    api = (a.api or cfg.get("api") or "chat").lower()
+    if api not in llm_api.APIS:
+        sys.exit(f"error: '- api: {api}' is not recognised — use one of {' | '.join(llm_api.APIS)}")
     effort = a.effort or cfg.get("effort", "")
-    # Reasoning models (GPT-5 series, o-series) reject `temperature` (400) and take `reasoning_effort` instead.
-    params = {"reasoning_effort": effort} if effort else {"temperature": temperature}
-    sampling = (f"reasoning_effort {effort}" + (" (CLI override)" if a.effort else "")) if effort \
-        else f"temperature {temperature}"
+    if effort and effort not in llm_api.KNOWN_EFFORTS:
+        print(f"note: effort '{effort}' is outside the values OpenAI documents "
+              f"({', '.join(llm_api.KNOWN_EFFORTS)}); passing it through for the provider to accept or reject",
+              file=sys.stderr)
+    # Sampling and effort are mutually exclusive, and temperature is sent ONLY when pinned:
+    # reasoning models take an effort instead, and vendors ask that temperature be omitted
+    # whenever one is set. With neither pinned, the provider's own defaults apply.
+    temperature = num("temperature") if (not effort and cfg.get("temperature")) else None
+    if effort and cfg.get("temperature"):
+        print(f"note: '- temperature: {cfg['temperature']}' is ignored because an effort ({effort}) is set",
+              file=sys.stderr)
+    max_out = num("max-output-tokens", int) if cfg.get("max-output-tokens") else None
+    if not effort and temperature is None:
+        print("note: no sampling control is pinned, so the provider's own default applies — which is not "
+              "reproducible across runs. Pin '- effort:' (reasoning models) or '- temperature: 0' in the "
+              "conventions' ## Audit block if this audit needs to be repeatable.", file=sys.stderr)
+    sampling = llm_api.stamp(api, effort, temperature, cli_override=bool(a.effort))
     prompt_version = cfg.get("prompt-version", "v1")
     if not (model and base_url):
         sys.exit("error: the conventions file needs an '## Audit' section with '- model:' and '- base-url:' "
@@ -173,8 +201,8 @@ def main():
 
     if a.dry_run:
         sizes = [len(system) + len(user_msg(v)) for v in papers]
-        print(f"[DRY-RUN] would send {len(papers)} requests to {model} @ {base_url} "
-              f"({sampling}, prompt {prompt_version})")
+        print(f"[DRY-RUN] would send {len(papers)} requests to {model} @ "
+              f"{llm_api.endpoint(base_url, api)} ({sampling}, prompt {prompt_version})")
         print(f"rules payload: {len(system):,} chars per request · row payloads: "
               f"{min(sizes) - len(system):,}–{max(sizes) - len(system):,} chars · total: {sum(sizes):,} chars")
         print(f"key comes from ${key_env or '<key-env not set!>'} (currently "
@@ -191,17 +219,23 @@ def main():
     for i, v in enumerate(papers, 1):
         for attempt in (1, 2):
             try:
-                content, pt, ct = call_model(base_url, key, model, params, system, user_msg(v))
+                content, pt, ct, _ = llm_api.call(base_url, key, api, model, system, user_msg(v),
+                                                  effort=effort or None, temperature=temperature,
+                                                  max_output_tokens=max_out)
                 in_tok += pt
                 out_tok += ct
                 verdict = parse_verdict(content)
                 results.append((v, verdict if verdict else {"error": "unparseable response"}))
                 break
-            except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError, json.JSONDecodeError) as e:
-                if attempt == 2:
-                    results.append((v, {"error": f"{type(e).__name__}: {e}"}))
-                else:
-                    time.sleep(3)
+            except llm_api.LLMError as e:
+                if attempt == 2 or not e.retryable:
+                    results.append((v, {"error": str(e)}))
+                    break
+                time.sleep(3)
+            except json.JSONDecodeError as e:
+                # the model replied, but not with parseable JSON — a row-level failure, never a crash
+                results.append((v, {"error": f"unparseable JSON in the reply: {e}"}))
+                break
         print(f"  audited {i}/{len(papers)}: {v['citekey']}", file=sys.stderr)
 
     today = datetime.date.today().isoformat()
@@ -211,8 +245,11 @@ def main():
     agree_n = len(results) - len({v["citekey"] for v, _ in disagree} | {v["citekey"] for v, _ in errors})
 
     cost_line = f"- Tokens: {in_tok:,} in / {out_tok:,} out"
+    if errors:
+        cost_line += (f" · counts EXCLUDE {len(errors)} failed call(s), which the provider may still have "
+                      f"billed for input and reasoning")
     if cfg.get("price-in") and cfg.get("price-out"):
-        spend = in_tok / 1e6 * float(cfg["price-in"]) + out_tok / 1e6 * float(cfg["price-out"])
+        spend = in_tok / 1e6 * num("price-in") + out_tok / 1e6 * num("price-out")
         cost_line += f" · spend ≈ ${spend:.4f} (at ${cfg['price-in']}/{cfg['price-out']} per M, from conventions)"
 
     rep = [
@@ -221,6 +258,8 @@ def main():
         "Every disagreement below is a question for the human, not a correction. Nothing was changed anywhere.*", "",
         "## Configuration (pinned — reproducibility)",
         f"- Model: `{model}` @ {base_url} · {sampling} · prompt {prompt_version} · run {today}",
+        "- Request format and sampling are part of what makes this reproducible: an identical prompt "
+        "sent through a different API or effort is a different run.",
         cost_line, "",
         f"## Summary — {len(results)} rows audited",
         f"- Fully concurring: {agree_n}",

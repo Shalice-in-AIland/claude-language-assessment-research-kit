@@ -27,7 +27,7 @@ import sys
 HERE = pathlib.Path(__file__).parent
 EXPECTED = ["render.sh", "render.bat", "style.csl", "resolve_check.py", "check_retractions.py",
             "vor_check.py", "matrix_to_vault.py", "review_audit.py", "manuscript_audit.py",
-            "pdf_probe.py", "notice_scan.py"]
+            "pdf_probe.py", "notice_scan.py", "llm_api.py"]
 
 
 def find_pandoc():

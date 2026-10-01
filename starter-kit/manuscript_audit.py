@@ -33,8 +33,14 @@ Usage:
   python3 manuscript_audit.py <manuscript.md|.txt> --findings <triage.md>
         [--conventions review-conventions.md]            # reuse the pinned ## Audit block
         [--model M --base-url URL --key-env VAR]         # or pin explicitly
-        [--effort low|medium|high | --temperature T]
+        [--effort <level> | --temperature T] [--api chat|responses]
         [--out "Manuscript Audit — DATE.md"] [--dry-run] --confirm-send
+
+The request format (`chat`, the default, or OpenAI's `responses`) is pinned in the same
+'## Audit' block as '- api:' and stamped into the report — an identical prompt sent through
+a different API is a different run. On the `responses` path the script always sends
+`store: false`, asking the provider not to retain the manuscript — a request it sends,
+not a guarantee it can verify.
 
 Start with --dry-run (payload sizes + estimated spend; nothing is transmitted).
 Exit codes: 0 = all findings concurred, nothing missed · 2 = disputes/missed items
@@ -47,8 +53,15 @@ import pathlib
 import os
 import re
 import sys
-import urllib.error
-import urllib.request
+
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+# one request/parse implementation, shared with review_audit.py, so the two cannot drift apart
+try:
+    import llm_api  # noqa: E402
+except ModuleNotFoundError:
+    sys.exit("this script now needs llm_api.py, which belongs beside it in the starter kit. "
+             "Copy the current starter-kit/llm_api.py into this folder, then run "
+             "`python3 clark_doctor.py` to check the rest of the kit is complete.")
 
 PROMPT_VERSION = "MA-v2"  # v2: XML payload tags, quote-first evidence, factual-vs-judgment dispute typing (per both vendors' published prompting guides)
 
@@ -84,24 +97,12 @@ def parse_audit_config(path):
             continue
         if in_audit and line.strip().startswith("- ") and ":" in line:
             k, v = line.strip()[2:].split(":", 1)
-            cfg[k.strip().lower()] = v.split("#")[0].strip()
+            # Drop trailing comments AND the template's own ⟨explanatory⟩ annotations, then
+            # ignore the key entirely if nothing is left: an unfilled template line is not a value.
+            v = v.split("#")[0].split("\u27e8")[0].strip()
+            if v:
+                cfg[k.strip().lower()] = v
     return cfg
-
-
-def call_model(base_url, key, model, params, system, user, timeout=300):
-    body = {"model": model,
-            "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}]}
-    body.update(params)
-    req = urllib.request.Request(
-        base_url.rstrip("/") + "/chat/completions",
-        data=json.dumps(body).encode(),
-        headers={"Content-Type": "application/json", "Authorization": f"Bearer {key}"},
-    )
-    with urllib.request.urlopen(req, timeout=timeout) as r:
-        body = json.loads(r.read().decode())
-    content = body["choices"][0]["message"]["content"]
-    usage = body.get("usage", {})
-    return content, usage.get("prompt_tokens", 0), usage.get("completion_tokens", 0)
 
 
 def main():
@@ -112,8 +113,12 @@ def main():
     ap.add_argument("--model")
     ap.add_argument("--base-url")
     ap.add_argument("--key-env", help="NAME of the env var holding the key (the key never appears in files)")
-    ap.add_argument("--effort", choices=["low", "medium", "high"])
+    ap.add_argument("--effort",
+                    help=f"reasoning effort. Known values: {' | '.join(llm_api.KNOWN_EFFORTS)} — support is "
+                         "model-dependent and the provider is the authority, so anything is passed through")
     ap.add_argument("--temperature", type=float)
+    ap.add_argument("--api", type=str.lower, choices=list(llm_api.APIS),
+                    help="request format (default: the conventions' '- api:', else chat)")
     ap.add_argument("--out")
     ap.add_argument("--dry-run", action="store_true", help="payload sizes + estimated spend; transmits nothing")
     ap.add_argument("--confirm-send", action="store_true",
@@ -126,12 +131,32 @@ def main():
     key_env = a.key_env or cfg.get("key-env")
     if not (model and base_url and key_env):
         sys.exit("config error: need model, base-url and key-env (via --conventions '## Audit' block or flags)")
-    params = {}
+    def num(key, cast=float):
+        """A pinned number, or a legible config error instead of a traceback."""
+        try:
+            return cast(cfg[key])
+        except (ValueError, TypeError):
+            sys.exit(f"config error: '- {key}: {cfg[key]}' in the conventions' ## Audit block is not a number")
+    api = (a.api or cfg.get("api") or "chat").lower()
+    if api not in llm_api.APIS:
+        sys.exit(f"config error: '- api: {api}' is not recognised — use one of {' | '.join(llm_api.APIS)}")
     eff = a.effort or cfg.get("manuscript-effort") or cfg.get("reasoning-effort") or cfg.get("effort")
-    if eff:
-        params["reasoning_effort"] = eff
-    elif a.temperature is not None or cfg.get("temperature"):
-        params["temperature"] = a.temperature if a.temperature is not None else float(cfg["temperature"])
+    if eff and eff not in llm_api.KNOWN_EFFORTS:
+        print(f"note: effort '{eff}' is outside the values OpenAI documents "
+              f"({', '.join(llm_api.KNOWN_EFFORTS)}); passing it through for the provider to accept or reject",
+              file=sys.stderr)
+    # Effort and temperature are mutually exclusive; temperature goes out ONLY when pinned.
+    temperature = None
+    if not eff and (a.temperature is not None or cfg.get("temperature")):
+        temperature = a.temperature if a.temperature is not None else num("temperature")
+    elif eff and (a.temperature is not None or cfg.get("temperature")):
+        print(f"note: temperature is ignored because an effort ({eff}) is set", file=sys.stderr)
+    max_out = num("max-output-tokens", int) if cfg.get("max-output-tokens") else None
+    if not eff and temperature is None:
+        print("note: no sampling control is pinned, so the provider's own default applies — which is not "
+              "reproducible across runs. Pin '- effort:' (reasoning models) or '- temperature: 0' in the "
+              "conventions' ## Audit block if this audit needs to be repeatable.", file=sys.stderr)
+    sampling = llm_api.stamp(api, eff, temperature, cli_override=bool(a.effort))
 
     ms_text = pathlib.Path(a.manuscript).read_text(encoding="utf-8")
     findings = pathlib.Path(a.findings).read_text(encoding="utf-8")
@@ -142,8 +167,8 @@ def main():
     approx_in = (len(SYSTEM) + len(user)) // 4  # rough chars/4 preview only; the report uses measured usage
     pin, pout = cfg.get("price-in"), cfg.get("price-out")
     est = f" · est. input cost ${approx_in / 1e6 * float(pin):.3f}" if pin else ""
-    print(f"[plan] model={model} params={params or 'provider defaults'} prompt={PROMPT_VERSION} "
-          f"payload≈{approx_in:,} tokens (chars/4 preview){est}")
+    print(f"[plan] model={model} @ {llm_api.endpoint(base_url, api)} · {sampling} · prompt={PROMPT_VERSION} "
+          f"· payload≈{approx_in:,} tokens (chars/4 preview){est}")
     if a.dry_run:
         print("[dry-run] nothing transmitted.")
         return
@@ -155,9 +180,12 @@ def main():
     if not key:
         sys.exit(f"config error: environment variable {key_env} is not set")
     try:
-        content, tin, tout = call_model(base_url, key, model, params, SYSTEM, user)
-    except urllib.error.HTTPError as e:
-        sys.exit(f"API error {e.code}: {e.read().decode()[:400]}")
+        content, tin, tout, _ = llm_api.call(base_url, key, api, model, SYSTEM, user,
+                                             effort=eff or None, temperature=temperature,
+                                             max_output_tokens=max_out, timeout=300)
+    except llm_api.LLMError as e:
+        sys.exit(f"the audit call failed, so no report was written: {e}\n"
+                 f"The manuscript was transmitted to {base_url}; re-running is safe, and will send it again.")
     m = re.search(r"\{.*\}", content, re.S)
     if not m:
         sys.exit(f"could not parse a JSON verdict from the response:\n{content[:600]}")
@@ -173,7 +201,7 @@ def main():
     lines = [
         f"# Manuscript Audit — {date}",
         "",
-        f"*Second-rater audit (cross-vendor). Model **{model}** · params {params or 'provider defaults'} · "
+        f"*Second-rater audit (cross-vendor). Model **{model}** · {sampling} · "
         f"prompt {PROMPT_VERSION} · measured usage {tin:,} in / {tout:,} out{spend}. "
         f"PROPOSE-ONLY: disagreements are questions for the author, not corrections. "
         f"This report quotes an unpublished manuscript — keep it with the manuscript's confidential record.*",

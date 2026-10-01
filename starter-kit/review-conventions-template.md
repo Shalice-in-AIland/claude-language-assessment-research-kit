@@ -68,12 +68,14 @@ Publication status (preprint/published) is NOT a study type — it derives autom
 - Corpus state watch (radar Mode C — what *changed* about papers already held): corpus = the matrix's `Cite key` column resolved against ⟨path/to/library.bib⟩ (never a whole-library export unfiltered, never a stale snapshot) · held-PDF folder for the notice scan: ⟨path/to/Literature⟩ · publisher-page glance list: the rows carrying `★` in Key points / Flags (the dashboard's ★ KEY register) ⟨+ any named rows⟩ · proposed row updates use the optional `record_state` / `last_verified` columns (see ## Matrix).
 
 ## Audit (highly recommended before submission milestones — needs your own API key; delete if unused)
-*A different vendor's model re-judges every row against THIS file's rules and files a propose-only report. Pin the exact model here (reproducibility — verify current model IDs and prices the day you set this up; names retire: e.g. DeepSeek's `deepseek-reasoner` alias is scheduled to retire 2026-07-24).*
+*A different vendor's model re-judges every row against THIS file's rules and files a propose-only report. Pin the exact model here (reproducibility — verify current model IDs and prices the day you set this up; model names retire and undated aliases get silently repointed, so pin the most specific ID your provider offers and re-check it the day you set this up).*
 - model: ⟨e.g. deepseek-v4-pro⟩
 - base-url: ⟨e.g. https://api.deepseek.com/v1 — any OpenAI-compatible endpoint⟩
 - key-env: ⟨name of the environment variable holding YOUR API key, e.g. OPENAI_API_KEY — set it in your own shell; never paste the key into chat or files⟩
-- effort: low  ⟨for reasoning models (GPT-5/o-series): they reject `temperature`; low is the validated census setting — factual findings are effort-stable, and a stricter cheap auditor surfaces more for the human gate⟩
-- temperature: 0  ⟨used only for non-reasoning models; ignored when `effort` is set⟩
+- effort: low  ⟨for reasoning models: give them an effort instead of a temperature. Documented values are none · minimal · low · medium · high · xhigh · max, but support is model-dependent and providers differ, so the provider has the final say. `low` is the validated census setting — factual findings are effort-stable, and a stricter cheap auditor surfaces more for the human gate⟩
+- temperature: ⟨0 — fill this in ONLY for a model with no effort setting; with an `effort` above it is ignored, and with neither pinned the provider's own default applies, which is not reproducible⟩
+- api: chat  ⟨request format. `chat` (the default, and what every OpenAI-compatible provider speaks) or `responses` (OpenAI's newer format; some other providers accept it too, but may silently ignore fields they do not support — verify against your provider's docs before switching). On `responses` the audits always send `store: false`, asking the provider not to retain your text for later retrieval — whether a given provider honours it is a question for their documentation, not something this kit can verify. Whichever you pin is stamped into the report: the same prompt through a different API is a different run⟩
+- max-output-tokens: ⟨optional cap on the reply. Reasoning tokens count towards it, and a reply that hits the cap is reported as a failed call, not a short answer — OpenAI suggests reserving at least 25,000 when you start. Omit for the model's own maximum⟩
 - prompt-version: v1
 - price-in: ⟨USD per 1M input tokens, from the provider's pricing page — enables spend reporting⟩
 - price-out: ⟨USD per 1M output tokens⟩
