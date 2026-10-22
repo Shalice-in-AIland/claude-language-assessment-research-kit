@@ -4,6 +4,9 @@ All notable changes to CLARK, one entry per release (the git history carries the
 
 ## [Unreleased]
 
+### Changed
+- README's opening sentence now also says that no skill ever helps hide AI involvement, with a pointer to charter rule 15, so the integrity-first promise on the front page matches the 2.0.0 charter. The repository's About description gains the same point: "Nothing invented, nothing silently changed, no AI use hidden."
+
 ## [2.0.0] — 2026-10-22
 
 **The charter asks more of authors, and states what the kit will not do.** The ground rule and five of the sixteen rules are extended, and the count stays at sixteen. A number beside a citation must now be one that study reports, or one you say you calculated from it, and an imported record is checked against the copy you read before it carries weight. Evidence is graded evenly, so studies you know cut against you are reported, and a claim that something is standard practice needs evidence that it is widespread, or rewording as your own argument. Furthermore, rule 15 now states a commitment of the kit itself. No CLARK skill is written to help hide AI involvement, and Claude declines requests to humanise text, evade a detector, tamper with a provenance mark, or hide or understate AI use. This is a major release because authors act on it, yet no files, conventions or scripts need changing to upgrade. Alongside it, writing-polish leaves a marked gap for the reason when an author criticises a cited work without giving one, and its answer key now sits outside the repository so that blind re-tests stay blind. DOI: [10.5281/zenodo.23572430](https://doi.org/10.5281/zenodo.23572430).
