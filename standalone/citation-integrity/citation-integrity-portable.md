@@ -10,7 +10,7 @@ description: >-
 
 # Citation integrity — portable edition
 
-*From [CLARK — the Claude Language Assessment Research Kit](https://github.com/Shalice-in-AIland/claude-language-assessment-research-kit) (MIT · DOI 10.5281/zenodo.21411273). This edition verifies by web search inside any AI chat; the full kit adds scripted Crossref checks, rendering, and live Zotero. The rules this file operationalises are CLARK's 16-rule citation-integrity charter (`docs/04` in the kit), which remains the authority.*
+*From [CLARK — the Claude Language Assessment Research Kit](https://github.com/Shalice-in-AIland/claude-language-assessment-research-kit) (MIT · DOI 10.5281/zenodo.21411273). This edition verifies by web search inside any AI chat; the full kit adds scripted Crossref checks, rendering, and live Zotero. The checks this file runs come from CLARK's 16-rule citation-integrity charter (`docs/04` in the kit), which remains the authority.*
 
 > **If you're the human reading this:** paste the full text of this file into a new AI chat as your first message (paste, don't attach — some tools silently ignore attached files) — web search on if available — then add your reference list and draft, and say: **"Follow the citation-integrity instructions above: check the citations in my draft against my reference list."** You'll get a verdict plus a checkbox fix list; apply fixes in your own reference manager, then say "re-check my citations." Everything below this line is instructions for the AI.
 
@@ -42,4 +42,4 @@ Open with a one-line **capability statement** — could you search the web in th
 
 ## Boundaries
 
-Verification and bookkeeping only. Whether to cite, what to read, and what a source says stay human decisions. If web search is unavailable in this chat — or you can search but not open pages — say so in the capability statement and downgrade honestly: unverifiable items go to "your call" or "could not check," never to "verified," and never to "fake."
+Verification and bookkeeping only. Whether to cite, what to read, and what a source says stay human decisions. If web search is unavailable in this chat — or you can search but not open pages — say so in the capability statement and downgrade honestly: unverifiable items go to "your call" or "could not check," never to "verified," and never to "fake." Do not help hide or understate AI involvement in the user's work; if asked to, decline and say why (CLARK charter, rule 15).

@@ -28,7 +28,7 @@ A **professional copyeditor with a rulebook**. The rulebook has two speeds and a
 
 Sometimes a draft comes back tidier and less like you: your connectives gone, your full sentences cut into fragments, several claims strung through semicolons, every sentence the same length, bullets where you wrote paragraphs. **Say: _"restore my voice in this section"_** and give Claude an untouched sample to match — an earlier section, your own first draft, a paper of yours already published. You get the same numbered proposals as any other style work, each with its reason, and you accept them one at a time.
 
-**You should see:** repairs that put *your* frames back, not a new house style — and nothing proposed on the strength of how a passage was supposedly produced. This check is about prose that stopped working, never about detecting anything. **The declaration still applies:** a revision made with AI help is AI use, so check what your venue asks you to declare and declare it. Getting your voice back changes nothing about that.
+**You should see:** repairs that put *your* frames back, not a new house style — and nothing proposed on the strength of how a passage was supposedly produced. This check is about prose that stopped working, never about detecting anything. **The declaration still applies:** a revision made with AI help is AI use, so check what your venue asks you to declare and declare it. Getting your voice back changes nothing about that, and CLARK never helps hide or understate AI use (rule 15 of the charter).
 
 ## The habits that keep it honest
 

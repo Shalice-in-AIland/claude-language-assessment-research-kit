@@ -30,6 +30,6 @@
 
 **The standing rule, in both files:** an AI may *format and check* a citation — it may never *supply* one. Every fix is proposed; the researcher decides.
 
-**The full version:** the in-repo [`citation-integrity` skill](../../skills/citation-integrity/SKILL.md) adds scripted, deterministic checks (every DOI resolved against Crossref, then DataCite and OpenAlex before any dead-DOI verdict, retraction sweep, preprint→version-of-record), rendering, and live Zotero — under the complete [16-rule integrity charter](../../docs/04-citation-integrity.md). These portable editions follow the same rules; the charter remains the single source.
+**The full version:** the in-repo [`citation-integrity` skill](../../skills/citation-integrity/SKILL.md) adds scripted, deterministic checks (every DOI resolved against Crossref, then DataCite and OpenAlex before any dead-DOI verdict, retraction sweep, preprint→version-of-record), rendering, and live Zotero — under the complete [16-rule integrity charter](../../docs/04-citation-integrity.md). These portable editions run the checkable parts of the same rules; the charter remains the single source.
 
 *Part of [CLARK — the Claude Language Assessment Research Kit](https://github.com/Shalice-in-AIland/claude-language-assessment-research-kit) · MIT · cite: DOI [10.5281/zenodo.21411273](https://doi.org/10.5281/zenodo.21411273)*

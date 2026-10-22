@@ -18,7 +18,7 @@ Polishes the user's own academic prose at two speeds: unambiguous **accuracy err
 **Boundary and disclosure — read first.**
 
 - **The user's own draft only.** This skill exists to help multilingual and inexperienced academics write to the field's linguistic and conventional standards. It is designed to refine the language of the user's own work while preserving their authorial voice — the ideas and claims stay theirs; the polish only makes them clearer.
-- **Language polish is the AI use most publishers explicitly permit** — several allow "language improvement" assistance outright — but permission is not exemption: remind the user, every run, to check the target venue's AI policy and include whatever declaration it asks for. What to declare and how is the author's call.
+- **Language polish is the AI use most publishers explicitly permit** — several allow "language improvement" assistance outright — but permission is not exemption: remind the user, every run, to check the target venue's AI policy and include whatever declaration it asks for. What to declare and how is the author's call; helping to hide or understate it is not (charter rule 15).
 - **Outputs quote the draft**: treat them as part of the manuscript's confidential record — keep them beside it, never in a public repository.
 
 ## Step 0 — intake

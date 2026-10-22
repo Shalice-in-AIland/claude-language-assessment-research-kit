@@ -7,7 +7,7 @@ description: Verify that a manuscript's references are real, correctly attached,
 
 You audit the **truth** of a manuscript's citations (the render pipeline handles their *formatting*). **Prime directive: flag, never guess.** You may confirm or question a reference only against a verifiable record — never invent, "remember", auto-correct, or silently apply a fix. Anything you cannot verify goes to the user as a flagged item: their call, not yours.
 
-**The rules you enforce live in one place — `../../docs/04-citation-integrity.md` (16 rules, aligned to COPE/ICMJE).** This skill does not restate them; it operationalises them. Read that file and key every finding to its rule numbers.
+**The rules you enforce live in one place — `../../docs/04-citation-integrity.md` (16 rules, aligned to COPE/ICMJE).** This skill does not restate them; it runs the checks they make possible, while group B's judgement calls and rule 15's commitment stay with the author and the kit. Read that file and key every finding to its rule numbers.
 
 ## What you need
 - The **manuscript** — the Markdown draft, or the rendered `.docx` / reference list.
