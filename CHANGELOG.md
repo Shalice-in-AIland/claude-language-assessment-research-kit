@@ -7,6 +7,7 @@ All notable changes to CLARK, one entry per release (the git history carries the
 ### Changed
 - **Validation accounts made generic.** CLAUDE.md requires that real projects and test materials are never identifiable in this repo. Four accounts gave away more than they needed to: the pre-submission-review provenance and `docs/08` gave the round and report counts of the published article used as ground truth, `docs/07` gave the exact size of the review matrix the tools were exercised on, and two 1.2.0 changelog entries named the journal behind the correction case. Each now states what was tested and what it showed, without the details that could identify the source. The live v1.2.0 release notes were updated to match.
 - README's v1.2.0 entry gains its release-notes link and version DOI, like the entries before it.
+- **writing-polish's answer key leaves the skill folder.** A key sitting beside `SKILL.md` can be read by the very model being tested, which defeats a blind run. `worked-example.md` stays as a demonstration; the key is held out of the repository, and the maintainer re-runs the skill blind on held-out material after every change to `SKILL.md`. CONTRIBUTING now says so.
 
 ## [1.2.0] — 2026-10-22
 

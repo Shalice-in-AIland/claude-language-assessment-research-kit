@@ -1,6 +1,6 @@
 # writing-polish — worked example
 
-*The known-answer test for this skill. CONTRIBUTING requires it to be re-run after any change to `SKILL.md`: give a fresh session the request below with only this file and `SKILL.md`, then score its output against [worked-example-key.md](worked-example-key.md). Everything here is invented, and the citekeys are placeholders.*
+*A demonstration of what this skill does with a real request: faults planted across all five dimensions and the voice-restoration check. Its answer key is held out of the repository, so a model running the skill cannot read the answers; the maintainer re-runs the skill blind after every change to `SKILL.md`, as CONTRIBUTING requires, on held-out material in the same form. Everything here is invented, and the citekeys are placeholders.*
 
 ## The request
 
