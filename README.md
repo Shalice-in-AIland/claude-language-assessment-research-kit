@@ -1,6 +1,6 @@
 # Claude Language Assessment Research Kit (CLARK)
 
-![version](https://img.shields.io/badge/version-1.1.0-blue) [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.21411273-blue)](https://doi.org/10.5281/zenodo.21411273) ![license](https://img.shields.io/badge/license-MIT-green) ![runs on](https://img.shields.io/badge/runs%20on-Claude%20Code-8A5CF6) ![field](https://img.shields.io/badge/field-language%20assessment%20%2F%20applied%20linguistics-orange)
+![version](https://img.shields.io/badge/version-1.2.0-blue) [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.21411273-blue)](https://doi.org/10.5281/zenodo.21411273) ![license](https://img.shields.io/badge/license-MIT-green) ![runs on](https://img.shields.io/badge/runs%20on-Claude%20Code-8A5CF6) ![field](https://img.shields.io/badge/field-language%20assessment%20%2F%20applied%20linguistics-orange)
 
 Research skills for the language-assessment and applied-linguistics community. From the literature watch to the pre-submission check, each skill packages a complete, **integrity-first** workflow — integrity-first meaning nothing is ever invented, nothing is silently changed, and the AI-use declaration your venue expects is a built-in reminder.
 
@@ -22,6 +22,7 @@ Research skills for the language-assessment and applied-linguistics community. F
 
 ## What's new
 
+- **v1.2.0 · 2026-10-22 — watching what you already hold.** The literature radar now also watches the papers already in your corpus for corrections, retractions and published versions, including corrections that never reach an index. Also new: a first-page notice scan for the PDFs you hold, a voice-restoration check in writing-polish, and a page naming [the published work behind the rules](docs/10-sources.md).
 - **v1.1.0 · 2026-07-23 — citation integrity goes standalone.** The kit's most-requested check, now extractable: a self-contained edition for **any AI chat** and a printable practice checklist for research students and their supervisors — no repo download, no setup. Take it: [`standalone/citation-integrity/`](standalone/citation-integrity/README.md) · [release notes](https://github.com/Shalice-in-AIland/claude-language-assessment-research-kit/releases/tag/v1.1.0) · DOI [10.5281/zenodo.21504577](https://doi.org/10.5281/zenodo.21504577)
 - **🧭 [CLARK Field Guides](field-guides/README.md)** — expert-curated domain packs the skills consume: a domain's venues, reviewer criteria, and review vocabularies, curated by a named expert and **citable with its own DOI** (the skills are the verbs; the guides are the nouns). The founding guide (Automated Writing Evaluation) is in preparation; **experts from any corner of the field are invited to curate one** — listening assessment, item writing, young learners… — at whichever of the three contribution rungs fits, from "cite my published work" to full co-curatorship.
 
