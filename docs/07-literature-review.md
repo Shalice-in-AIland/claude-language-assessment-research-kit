@@ -56,4 +56,4 @@ Papers change after you file them: a correction appears on the publisher's page,
 3. **Audit at milestones** — before submission, after big triage batches; diff the reports over time.
 4. **Trust the flags** — "unlisted theme," "read basis: figures not visible," "requires the paper" are the system telling you where *your* eyes are needed. That's the design working, not failing.
 
-*Verified July 2026: generator and auditor exercised end-to-end on a real 104-row review matrix (85 projected notes, a full second-model audit census, and an effort-level comparison). Both tools are standard-library Python — no installs; commands for by-hand use are in each script's header in `starter-kit/`.*
+*Verified July 2026: generator and auditor exercised end-to-end on a full-size working review matrix, including a complete second-model audit and an effort-level comparison. Both tools are standard-library Python — no installs; commands for by-hand use are in each script's header in `starter-kit/`.*
