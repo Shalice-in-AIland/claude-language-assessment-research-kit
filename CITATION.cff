@@ -30,6 +30,9 @@ identifiers:
   - type: doi
     value: "10.5281/zenodo.23570442"
     description: "Version DOI for v1.2.0."
+  - type: doi
+    value: "10.5281/zenodo.23572430"
+    description: "Version DOI for v2.0.0."
 keywords:
   - language assessment
   - applied linguistics
