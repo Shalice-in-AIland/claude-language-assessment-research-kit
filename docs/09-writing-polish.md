@@ -17,12 +17,18 @@ A **professional copyeditor with a rulebook**. The rulebook has two speeds and a
 **Say: _"Polish this section for submission to ⟨journal⟩"_** (or just "polish this paragraph"). Claude asks only what the text doesn't answer — venue, section type — then works through the five dimensions:
 
 1. **Accuracy** — the language itself, corrected with the change log.
-2. **Clarity & readability** — one idea per sentence; especially *clusters* of long, dense sentences (one is a style choice; three in a row is a wall).
+2. **Clarity & readability** — a sentence you have to read twice gets broken up; a long sentence that is well built stays, because splitting it throws away the links between its parts. The real target is *clusters* (one dense sentence is a style choice; three in a row is a wall).
 3. **Formality** — colloquialisms, contractions, vague quantifiers — while never over-formalizing: "utilize" is fine where it earns its place; the failure is choosing it *because* it sounds formal when "use" says the same thing.
 4. **Register & conventions** — the field's objective-and-cordial register; topic sentences, cohesion, tense conventions by section.
 5. **Stance** — hedges, boosters, self-mention: appropriateness edits proposed freely; anything that would strengthen or weaken the claim itself is flagged for your judgement, never applied.
 
 **You should see:** your corrected text, the change log, numbered proposals grouped by dimension — and a closing **recurring-patterns note** (at most three) naming your personal patterns and pointing each at a free practice resource (Academic Phrasebank for stance, Purdue OWL for accuracy, UEFAP for style). That note is your takeaway checklist.
+
+## If a revision came back not sounding like you
+
+Sometimes a draft comes back tidier and less like you: your connectives gone, your full sentences cut into fragments, several claims strung through semicolons, every sentence the same length, bullets where you wrote paragraphs. **Say: _"restore my voice in this section"_** and give Claude an untouched sample to match — an earlier section, your own first draft, a paper of yours already published. You get the same numbered proposals as any other style work, each with its reason, and you accept them one at a time.
+
+**You should see:** repairs that put *your* frames back, not a new house style — and nothing proposed on the strength of how a passage was supposedly produced. This check is about prose that stopped working, never about detecting anything. **The declaration still applies:** a revision made with AI help is AI use, so check what your venue asks you to declare and declare it. Getting your voice back changes nothing about that.
 
 ## The habits that keep it honest
 
