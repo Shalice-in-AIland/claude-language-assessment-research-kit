@@ -72,6 +72,7 @@ Verify mechanically that every preserve-list item is intact between original and
 
 ## References
 
+- `worked-example.md` and `worked-example-key.md` — this skill's known-answer test: one short Discussion section with planted faults across all five dimensions and the voice-restoration check, plus the expected proposals. Re-run it after any change to this file, as CONTRIBUTING requires.
 - `../pre-submission-review/references/journal-reviewer-guides.md` — venue register expectations and the publishers' own tone canons (the objective/cordial standard is theirs as much as ours).
 - `../../docs/04-citation-integrity.md` — the charter; this skill inherits its declaration rules and touches no citations.
 - [Academic Phrasebank](https://www.phrasebank.manchester.ac.uk/) (University of Manchester; free to use online, content © the university — link and recommend, never copy its lists into files) — the writer-facing companion for stance and phraseology, especially *Being cautious* and *Being critical*.
