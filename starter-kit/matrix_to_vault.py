@@ -21,19 +21,32 @@ Usage:
   python3 matrix_to_vault.py <matrix.xlsx|.csv> --notes-dir <dir>
                              [--conventions review-conventions.md]
                              [--sheet <name>] [--dry-run]
+  python3 matrix_to_vault.py --selftest
+  --selftest  build a tiny workbook, bibliography and conventions file in a temporary folder —
+              with an empty text cell saved without content and a '- bibliography:' line with
+              prose after the path — and confirm they read and project correctly
 
-Exit codes: 0 = clean · 2 = flags to review (unlisted themes / skipped files)
-            1 = usage or read error.
+The conventions' optional '- bibliography:' line names the project's .bib (relative to the
+conventions file); when prose follows, put the path first, in backticks. A bibliography that
+cannot be found, checked or read is reported (⚠ — preprint register skipped); it never stops the run.
+
+Exit codes: 0 = clean · 2 = flags to review (unlisted themes / skipped files / an unusable bibliography line)
+            1 = usage or read error, or self-test failure.
 """
 import argparse
+import contextlib
 import csv
 import datetime
 import io
+import os
 import pathlib
 import re
+import shutil
 import sys
+import tempfile
 import xml.etree.ElementTree as ET
 import zipfile
+from xml.sax.saxutils import escape
 
 M = "{http://schemas.openxmlformats.org/spreadsheetml/2006/main}"
 R = "{http://schemas.openxmlformats.org/officeDocument/2006/relationships}"
@@ -57,9 +70,14 @@ def _cell_text(c, shared):
     t = c.get("t")
     if t == "s":
         v = c.find(M + "v")
-        return shared[int(v.text)] if v is not None else ""
+        return shared[int(v.text)] if v is not None and v.text and v.text.strip() else ""
     if t == "inlineStr":
-        return "".join(e.text or "" for e in c.find(M + "is").iter(M + "t"))
+        # some spreadsheet writers save an empty text cell as <c t="inlineStr"></c> — no <is> at all
+        inline = c.find(M + "is")
+        if inline is None:  # a stray <v> in such a cell is kept, never silently dropped
+            v = c.find(M + "v")
+            return (v.text or "") if v is not None else ""
+        return "".join(e.text or "" for e in inline.iter(M + "t"))
     v = c.find(M + "v")
     if v is None or v.text is None:
         return ""
@@ -161,6 +179,87 @@ def parse_conventions(path):
                 hubs.append((term, hub))
     return themes, hubs
 
+
+def bibliography_from_conventions(path):
+    """The conventions' '- bibliography:' line -> (bib path, None), or (None, warning or None).
+
+    Only lines starting '- bibliography:' count, as always; one holding only a template
+    ⟨placeholder⟩ is skipped. The value may carry prose around the path — - bibliography:
+    `library.bib` (the live export; …) — or sit on the next non-blank line when the bullet line is
+    empty (not a list item or heading), and then only when that line opens with the path. A '#' outside backticks starts a comment and template
+    ⟨notes⟩ are dropped. The path is then the whole text when that names an existing file (the
+    bare form that always worked, spaces allowed); else the first token when it ends in .bib or
+    names a file (a backticked or double-quoted span is one token); else the line's only .bib token — several
+    different ones are flagged, never guessed between; else the first token when it is
+    backticked or the only one. It is read relative to the conventions file. A path the
+    filesystem refuses to check (e.g. too long) is a warning, never a crash.
+    """
+    text = pathlib.Path(path).read_text(encoding="utf-8")
+    for m in re.finditer(r"^- bibliography:[ \t]*(.*)(?:\n(?:[^\S\n]*\n)*[^\S\n]*(?![-*+]\s|#|\d+[.)]\s)(\S.*))?",
+                         text, re.M):
+        value = m.group(1) if m.group(1).strip() else (m.group(2) or "")
+        head = re.sub(r"(`[^`]*`)|#.*", lambda x: x.group(1) or "", value)
+        head = re.sub(r"⟨[^⟩]*⟩|⟨.*", "", head).strip()
+        if head or "⟨" not in value:
+            from_next = not m.group(1).strip()
+            break
+    else:
+        return None, None
+    base = pathlib.Path(path).parent
+    hint = "put the path first, in backticks, e.g. - bibliography: `library.bib` (prose may follow it)"
+
+    def is_file(name):
+        try:
+            return (base / name).is_file()
+        except (OSError, ValueError):
+            return False
+
+    tokens = []  # (delimited by backticks or double quotes, text, where the text ends in head)
+    for t in re.finditer(r"`([^`]*)`|\"([^\"]*)\"|“([^”]*)”|([^\s`]+)", head):
+        span = next((g for g in t.groups()[:3] if g is not None), None)
+        if span is not None:
+            tokens.append((True, span.strip(), t.end()))
+        else:
+            word = t.group(4).lstrip("\"'“‘([<*")
+            lead = len(t.group(4)) - len(word)
+            word = word.rstrip("\"'”’)]>,;:.!?*")
+            tokens.append((False, word, t.start(4) + lead + len(word)))
+    tokens = [tok for tok in tokens if tok[1]]
+    bibs = [tok for tok in tokens if tok[1].lower().endswith(".bib")]
+    opens_with_path = ("`" not in head and is_file(head)) or bool(
+        tokens and (tokens[0][0] or tokens[0] in bibs or is_file(tokens[0][1])))
+    first = value.strip()[:1]
+    if from_next and not (opens_with_path and (first.isalnum() or first in "`\"“./~\\_")):
+        # a comment, quote, table row or prose line is never read as the path
+        where = "line is empty" + (" and the next line does not open with a path" if head else "")
+        return None, f"{where} — preprint register skipped; {hint}"
+    if "`" not in head and is_file(head):
+        ticked, name = False, head
+    elif tokens and (tokens[0] in bibs or is_file(tokens[0][1])):
+        ticked, name, _ = tokens[0]
+    elif len({tok[1] for tok in bibs}) > 1:
+        named = ", ".join(dict.fromkeys(tok[1] for tok in bibs))
+        return None, f"line names several .bib files ({named}) — preprint register skipped; {hint}"
+    elif bibs:
+        ticked, name, end = bibs[0]
+        if not ticked and is_file(head[:end]):  # a bare path with spaces, prose after it
+            name = head[:end]
+    elif tokens and (tokens[0][0] or len(tokens) == 1):
+        ticked, name, _ = tokens[0]
+    else:
+        return None, f"line names no .bib file — preprint register skipped; {hint}"
+    bib = base / name
+    shown = name if len(name) <= 80 else name[:77] + "…"
+    tip = f"; {hint}" if not ticked and len(tokens) > 1 else ""
+    try:
+        if bib.is_file():
+            return bib, None
+        problem = (f"not a file: {os.path.abspath(bib)}" if bib.exists() else
+                   f"not found: {os.path.abspath(bib)} (read relative to the conventions file)")
+    except (OSError, ValueError) as e:
+        problem = f"path could not be checked ({getattr(e, 'strerror', None) or e}): '{shown}'"
+    return None, f"{problem} — preprint register skipped{tip}"
+
 # ---------- generation ----------
 
 def sanitize(s):
@@ -228,15 +327,200 @@ def write_guarded(path, content, dry, skipped):
     if not dry:
         path.write_text(content, encoding="utf-8")
 
+# ---------- self-test ----------
 
-def main():
+def _tiny_xlsx(path, rows, shared):
+    """A minimal valid .xlsx: one sheet 'Matrix' holding `rows` (lists of <c> XML) + a shared-string table."""
+    main_ns = "http://schemas.openxmlformats.org/spreadsheetml/2006/main"
+    rel_ns = "http://schemas.openxmlformats.org/officeDocument/2006/relationships"
+    pkg_rels = "http://schemas.openxmlformats.org/package/2006/relationships"
+    ctype = "application/vnd.openxmlformats-officedocument.spreadsheetml"
+    parts = {
+        "[Content_Types].xml":
+            '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">'
+            '<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>'
+            '<Default Extension="xml" ContentType="application/xml"/>'
+            f'<Override PartName="/xl/workbook.xml" ContentType="{ctype}.sheet.main+xml"/>'
+            f'<Override PartName="/xl/worksheets/sheet1.xml" ContentType="{ctype}.worksheet+xml"/>'
+            f'<Override PartName="/xl/sharedStrings.xml" ContentType="{ctype}.sharedStrings+xml"/></Types>',
+        "_rels/.rels":
+            f'<Relationships xmlns="{pkg_rels}">'
+            f'<Relationship Id="rId1" Type="{rel_ns}/officeDocument" Target="xl/workbook.xml"/></Relationships>',
+        "xl/workbook.xml":
+            f'<workbook xmlns="{main_ns}" xmlns:r="{rel_ns}">'
+            '<sheets><sheet name="Matrix" sheetId="1" r:id="rId1"/></sheets></workbook>',
+        "xl/_rels/workbook.xml.rels":
+            f'<Relationships xmlns="{pkg_rels}">'
+            f'<Relationship Id="rId1" Type="{rel_ns}/worksheet" Target="/xl/worksheets/sheet1.xml"/>'
+            f'<Relationship Id="rId2" Type="{rel_ns}/sharedStrings" Target="sharedStrings.xml"/></Relationships>',
+        "xl/sharedStrings.xml":
+            f'<sst xmlns="{main_ns}" count="{len(shared)}" uniqueCount="{len(shared)}">'
+            + "".join(f"<si><t>{escape(s)}</t></si>" for s in shared) + "</sst>",
+        "xl/worksheets/sheet1.xml":
+            f'<worksheet xmlns="{main_ns}"><sheetData>'
+            + "".join(f'<row r="{i}">{"".join(cells)}</row>' for i, cells in enumerate(rows, 1))
+            + "</sheetData></worksheet>",
+    }
+    with zipfile.ZipFile(path, "w", zipfile.ZIP_DEFLATED) as z:
+        for name, xml in parts.items():
+            z.writestr(name, '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n' + xml)
+
+
+def selftest():
+    def s(ref, text):  # an inline-string cell, the way the matrices in the wild store text
+        return f'<c r="{ref}" t="inlineStr"><is><t>{escape(text)}</t></is></c>'
+
+    header = ["#", "Authors (Year)", "Short focus", "Theme", "Relevance", "Manuscript section",
+              "Key points / notes", "Flags", "Cite key"]
+    rows = [
+        [s(f"{chr(65 + i)}1", h) for i, h in enumerate(header)],
+        ['<c r="A2" t="n"><v>1</v></c>', s("B2", "Alpha & Beta (2024)"), s("C2", "rater agreement"),
+         s("D2", "Theme One"), s("E2", "High"), '<c r="F2" t="inlineStr"></c>',  # empty, no <is>: the crash
+         s("G2", "★ KEY — anchors the design"), s("I2", "alpha2024")],
+        ['<c r="A3" t="n"><v>2</v></c>', s("B3", "Gamma (2025)"), s("C3", "a preprint"), s("D3", "Theme One"),
+         s("E3", "Medium"), '<c r="F3" t="inlineStr"/>', s("I3", "gamma2025")],
+        ['<c r="A4" t="n"><v>3</v></c>', s("B4", "Delta (2023)"), '<c r="C4" t="inlineStr"><v>kept</v></c>',
+         s("D4", "Theme One"), s("E4", "Low"),
+         '<c r="F4" t="s"/>', '<c r="G4" t="s"><v></v></c>',  # shared-string cells with no value
+         '<c r="I4" t="s"><v>0</v></c>'],
+    ]
+    expected = [header,
+                ["1", "Alpha & Beta (2024)", "rater agreement", "Theme One", "High", "",
+                 "★ KEY — anchors the design", "", "alpha2024"],
+                ["2", "Gamma (2025)", "a preprint", "Theme One", "Medium", "", "", "", "gamma2025"],
+                ["3", "Delta (2023)", "kept", "Theme One", "Low", "", "", "", "delta2023"]]
+    prose = "the reference manager's automatic export, refreshed on every change and never edited by hand; " * 4
+    b = "- bibliography: "
+    cases = [  # (case, the conventions lines holding the bibliography, file it must resolve to, warning expected)
+        ("backticked path + prose (too long to be a file name)", f"{b}`library.bib` (kept beside this file; {prose})",
+         "library.bib", False),
+        ("bare path + '# comment', the form that always worked", f"{b}library.bib  # live export, not `field.bib`",
+         "library.bib", False),
+        ("bare path + prose", f"{b}library.bib (kept beside this file; the live export)", "library.bib", False),
+        ("bare path first, prose naming another existing .bib", f"{b}library.bib (the live export, not `field.bib`)",
+         "library.bib", False),
+        ("two different .bib files, neither first: flagged, not guessed", f"{b}the `field.bib` snapshot, not `library.bib`",
+         None, True),
+        ("template notes, one left unclosed", f"{b}`library.bib` ⟨relative to this file  # ⟨note⟩", "library.bib", False),
+        ("an earlier nested bullet naming another existing .bib", f"  - bibliography: was `field.bib`\n{b}library.bib",
+         "library.bib", False),
+        ("path after a blank line, unindented", "- bibliography:\n\nlibrary.bib", "library.bib", False),
+        ("path too long to check", f"{b}{'x' * 300}.bib", None, True),
+        ("file not found", f"{b}`nowhere.bib` (moved?)", None, True),
+        ("empty value", "- bibliography:", None, True),
+        ("empty line, next line a comment naming an existing .bib: warned, not picked",
+         "- bibliography:\n<!-- TODO: point at field.bib -->", None, True),
+        ("empty line, next line a table row naming an existing .bib", "- bibliography:\n| field.bib | snapshot |", None, True),
+        ("empty line, next line a quote naming an existing .bib", "- bibliography:\n> field.bib", None, True),
+        ("double-quoted path with a space, prose after it", f'{b}"My Refs/library.bib" (the live export)',
+         "library.bib", False),
+        ("template placeholder", f"{b}⟨path to the project's `library.bib`⟩", None, False),
+        ("template placeholder, closing bracket lost", f"{b}⟨path to the project's `library.bib`", None, False),
+    ]
+
+    tmp = pathlib.Path(tempfile.mkdtemp(prefix="matrix_to_vault_selftest_"))
+    results = []
+
+    def check(label, fn):
+        try:
+            ok, detail = fn()
+        except Exception as e:  # a crash is a failure, reported like one
+            ok, detail = False, f"{type(e).__name__}: {e}"
+        print(f"[{'PASS' if ok else 'FAIL'}] {label}: {detail}")
+        results.append(ok)
+
+    def run(argv, encoding=None):  # main() in-process; encoding= stands in for a legacy console code page
+        out = io.TextIOWrapper(io.BytesIO(), encoding=encoding) if encoding else io.StringIO()
+        code = None
+        try:
+            with contextlib.redirect_stdout(out):
+                main([str(a) for a in argv])
+        except SystemExit as e:
+            code = e.code
+        out.flush()
+        return code, out.buffer.getvalue().decode(encoding) if encoding else out.getvalue()
+
+    def conventions(name, lines):
+        p = tmp / name
+        p.write_text("# Review conventions — self-test\n\n## Theme vocabulary\n- Theme One\n\n## Matrix\n"
+                     "- field bibliography: `field.bib` (a snapshot — never read as the bibliography)\n"
+                     f"{lines}\n", encoding="utf-8")
+        return p
+
+    try:
+        xlsx = tmp / "matrix.xlsx"
+        _tiny_xlsx(xlsx, rows, ["delta2023"])
+        (tmp / "library.bib").write_text(
+            "@article{alpha2024,\n  title = {Alpha},\n  year = {2024}\n}\n\n"
+            "@misc{gamma2025,\n  title = {Gamma},\n  eprint = {2501.00001},\n  archiveprefix = {arXiv},\n}\n\n"
+            "@article{delta2023,\n  title = {Delta},\n  year = {2023}\n}\n", encoding="utf-8")
+        (tmp / "field.bib").write_text("@misc{gamma2025,\n  title = {Gamma}\n}\n", encoding="utf-8")
+        (tmp / "My Refs").mkdir()
+        shutil.copy(tmp / "library.bib", tmp / "My Refs" / "library.bib")
+
+        def read_back():
+            got = read_xlsx(xlsx)
+            return got == expected, "empty inline-string and value-less shared-string cells read as blank; a stray value kept" \
+                if got == expected else f"read {got}"
+        check("xlsx reader", read_back)
+
+        for i, (case, lines, want, warn_expected) in enumerate(cases):
+            def resolve(lines=lines, want=want, warn_expected=warn_expected, i=i):
+                bib, warning = bibliography_from_conventions(conventions(f"conventions-{i}.md", lines))
+                ok = (bib.name if bib else None) == want and bool(warning) == warn_expected
+                return ok, (f"resolves to {bib.name}" if bib else "no bibliography") + (f"; warns: {warning}" if warning else "")
+            check(f"bibliography line · {case}", resolve)
+
+        vault = tmp / "vault"
+        argv = [xlsx, "--notes-dir", vault, "--conventions", tmp / "conventions-0.md", "--sheet", "Matrix"]
+
+        def dry_run():
+            code, out = run(argv + ["--dry-run"])
+            return code == 0 and "paper notes: 3" in out and not vault.exists(), \
+                f"exit {code}, {'WROTE FILES' if vault.exists() else 'nothing written'}"
+        check("projection · dry run", dry_run)
+
+        def projection():
+            code, out = run(argv)
+            papers = vault / "Papers"
+            gamma = (papers / "gamma2025.md").read_text(encoding="utf-8")
+            alpha = (papers / "alpha2024.md").read_text(encoding="utf-8")
+            dash = (vault / "Review Dashboard.md").read_text(encoding="utf-8")
+            ok = (code == 0 and "⚠" not in out and len(list(papers.glob("*.md"))) == 3
+                  and 'publication: "preprint"' in gamma and 'publication: "published"' in alpha
+                  and "key-paper: true" in alpha and "## Preprints in the corpus (1)" in dash)
+            return ok, f"exit {code}, 3 notes, preprint register built from the prose bibliography line" \
+                if ok else f"exit {code}; report: {out.strip()[:300]}"
+        check("projection · written", projection)
+
+        def unusable_bibliography():
+            code, out = run([xlsx, "--notes-dir", vault, "--conventions", conventions("unusable.md", f"{b}{'x' * 300}.bib"),
+                             "--dry-run"], encoding="cp1252")
+            ok = code == 2 and "BIBLIOGRAPHY" in out
+            return ok, "exit 2 (a flag to review), warned and carried on, even on a console that cannot print the warning sign" \
+                if ok else f"exit {code}; report: {out.strip()[:300]}"
+        check("projection · unusable bibliography path", unusable_bibliography)
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+    return all(results)
+
+
+def main(argv=None):
+    if getattr(sys.stdout, "errors", None) in ("strict", "surrogateescape") and hasattr(sys.stdout, "reconfigure"):
+        try:
+            "⚠—".encode(sys.stdout.encoding or "utf-8")
+        except (UnicodeEncodeError, LookupError):  # a legacy console code page: print '?', never crash the report
+            sys.stdout.reconfigure(errors="replace")
+    argv = sys.argv[1:] if argv is None else argv
+    if "--selftest" in argv:
+        sys.exit(0 if selftest() else 1)
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("matrix", help="review matrix (.xlsx or .csv)")
     ap.add_argument("--notes-dir", required=True, help="vault folder to generate into (gets Papers/ and Themes/)")
     ap.add_argument("--conventions", help="review-conventions.md (controlled vocabulary + hub terms)")
     ap.add_argument("--sheet", help="worksheet name (default: first sheet)")
     ap.add_argument("--dry-run", action="store_true", help="report only; write nothing")
-    a = ap.parse_args()
+    a = ap.parse_args(argv)
 
     path = pathlib.Path(a.matrix)
     if not path.exists():
@@ -244,14 +528,16 @@ def main():
     rows = read_csv(path) if path.suffix.lower() == ".csv" else read_xlsx(path, a.sheet)
     h, col = find_header(rows)
     vocab, hub_terms = parse_conventions(a.conventions)
-    bib_status = {}
+    bib_status, bib_warning = {}, None
     if a.conventions:
-        conv_text = pathlib.Path(a.conventions).read_text(encoding="utf-8")
-        mbib = re.search(r"^- bibliography:\s*(.+?)\s*(?:#.*)?$", conv_text, re.M)
-        if mbib:
-            bib_path = (pathlib.Path(a.conventions).parent / mbib.group(1).strip()).resolve()
-            if bib_path.exists():
+        bib_path, bib_warning = bibliography_from_conventions(a.conventions)
+        if bib_path:
+            try:
                 bib_status = parse_bib_status(bib_path)
+                if not bib_status:
+                    bib_warning = f"no BibTeX entries read from {bib_path} — preprint register skipped"
+            except OSError as e:
+                bib_warning = f"could not be read ({e.strerror or e}): {bib_path} — preprint register skipped"
 
     notes_dir = pathlib.Path(a.notes_dir)
     papers, themes_dir = notes_dir / "Papers", notes_dir / "Themes"
@@ -371,6 +657,8 @@ def main():
         print(f"   {len(m):3d}  Theme — {hub}")
     for hub, m in sorted(hub_use.items(), key=lambda x: -len(x[1])):
         print(f"   {len(m):3d}  {hub}")
+    if bib_warning:
+        print(f"⚠ BIBLIOGRAPHY {bib_warning}")
     if unlisted:
         print(f"⚠ UNLISTED themes ({len(unlisted)}) — not in the controlled vocabulary; add to review-conventions.md or fix the matrix (never auto-added):")
         for t, keys in sorted(unlisted.items()):
@@ -379,7 +667,7 @@ def main():
         print(f"⚠ SKIPPED {len(skipped)} file(s) without the generated-by marker (hand-edited — user edits win):")
         for s in skipped:
             print(f"   · {s}")
-    sys.exit(2 if (unlisted or skipped) else 0)
+    sys.exit(2 if (unlisted or skipped or bib_warning) else 0)
 
 
 if __name__ == "__main__":
