@@ -213,7 +213,8 @@ def main():
     key = os.environ.get(key_env or "", "")
     if not key:
         sys.exit(f"error: API key env var '{key_env}' is not set. Set it in your own shell "
-                 f"(e.g. add  export {key_env}=<your key>  to ~/.zshrc) — never share the key in chat.")
+                 f"(e.g. add  export {key_env}=<your key>  to ~/.zshenv, which zsh reads in every shell, "
+                 f"interactive or not; ~/.zshrc is read only by interactive ones) — never share the key in chat.")
 
     results, in_tok, out_tok = [], 0, 0
     for i, v in enumerate(papers, 1):
