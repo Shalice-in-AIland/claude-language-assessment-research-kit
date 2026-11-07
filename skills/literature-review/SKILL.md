@@ -29,7 +29,7 @@ For one paper (PDF, DOI, citation) or a batch pre-screen:
 8. **On approval only**: back up the matrix (dated copy), append/write, re-sort per conventions, then **verify integrity** — the multiset of row contents must be identical before/after any re-sort; restore from backup on failure. Report what was written.
 
 ## Mode 2 — project the matrix into the vault (generate, don't hand-write)
-Run `python3 ../../starter-kit/matrix_to_vault.py <matrix> --notes-dir <vault-notes-dir> --conventions review-conventions.md --dry-run` and show the user the report: papers, hubs and sizes, **unlisted themes** (flagged, never auto-added), and **hand-edited notes that would be skipped**. On approval, run without `--dry-run`. Facts the generator enforces (and you must respect):
+Run `python3 ../../starter-kit/matrix_to_vault.py <matrix> --notes-dir <vault-notes-dir> --conventions review-conventions.md --dry-run` and show the user the report: papers, hubs and sizes, **unlisted themes** (flagged, never auto-added), **hand-edited notes that would be skipped**, and any **⚠ BIBLIOGRAPHY** line (the bibliography could not be used, so the preprint register was skipped; the run exits 2). On approval, run without `--dry-run`. Facts the generator enforces (and you must respect):
 - Notes are **named by citekey** (globally unique, Zotero-tied, vault-merge-safe) and carry a `generated-by: clas-literature-review` marker.
 - A file **without the marker is never overwritten** — user edits win; the report lists skips.
 - Hub links come only from the **controlled vocabulary** and the conventions' **hub terms** (term → hub mappings over the matrix's own wording). Anything unmatched is reported, exit code 2 — a flag for the user, not an error to fix silently.

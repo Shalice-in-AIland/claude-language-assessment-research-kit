@@ -226,11 +226,24 @@ def crossref_by_title(entry, mailto, rows=3):
     return sorted(out, key=lambda r: r["sim"], reverse=True)
 
 
+def main_title(t):
+    """The title before its first colon — the part a record that drops the subtitle still carries."""
+    return norm(re.split(r":", t or "", maxsplit=1)[0])
+
+
+def subtitle_only_difference(a, b):
+    """True when one title is exactly the other without its subtitle, and that main title has at least
+    three words. Two different subtitles under one main title are NOT exempted: they can be two works."""
+    na, nb = norm(a), norm(b)
+    return any(len(main.split()) >= 3 and main == other
+               for main, other in ((main_title(a), nb), (main_title(b), na)))
+
+
 def mismatch_reasons(entry, rec):
     reasons = []
     if entry["title"] and rec["title"]:
         sim = difflib.SequenceMatcher(None, norm(entry["title"]), norm(rec["title"])).ratio()
-        if sim < TITLE_MATCH:
+        if sim < TITLE_MATCH and not subtitle_only_difference(entry["title"], rec["title"]):
             reasons.append(f"title differs (sim {sim:.2f}): DOI resolves to \"{rec['title'][:60]}\"")
     if entry["year"] and rec["year"] and abs(entry["year"] - rec["year"]) > 1:
         reasons.append(f"year differs: entry {entry['year']} vs record {rec['year']}")

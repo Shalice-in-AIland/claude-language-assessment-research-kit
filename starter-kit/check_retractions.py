@@ -103,8 +103,12 @@ def main():
         except Exception as ex:
             failed.append((e, str(ex)[:60]))
             continue
+        serious_dois = {n["notice_doi"].lower() for n in notices if n["type"] in SERIOUS}
         for n in notices:
-            (flagged if n["type"] in SERIOUS else corrections).append((e, n))
+            if n["type"] in SERIOUS:
+                flagged.append((e, n))
+            elif n["notice_doi"].lower() not in serious_dois:  # one notice labelled both ways is listed once, as serious
+                corrections.append((e, n))
         print(f"\r  checked {i}/{len(with_doi)}", end="", flush=True)
         time.sleep(0.15)   # polite pacing
     print("\n")
@@ -112,7 +116,8 @@ def main():
     if flagged:
         print("⚠⚠ SERIOUS NOTICES (retraction / withdrawal / expression of concern):")
         for e, n in flagged:
-            print(f"  ⚠ {e['key']}  [{n['type']}]  notice DOI: https://doi.org/{n['notice_doi']}\n     {e['title']}")
+            own = "  (the article's own record, marked by the publisher)" if n["notice_doi"].lower() == e["doi"].lower() else ""
+            print(f"  ⚠ {e['key']}  [{n['type']}]  notice DOI: https://doi.org/{n['notice_doi']}{own}\n     {e['title']}")
     elif not with_doi:
         print("○ no DOI-bearing entries — nothing was checked against Crossref.")
     elif failed:
