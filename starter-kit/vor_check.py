@@ -12,7 +12,8 @@ PROPOSE-ONLY: prints candidates with their evidence (title similarity + shared s
 Updating the record happens in Zotero, by the user — per the integrity charter, a preprint
 is cited as such or upgraded to the version of record once verified (docs/04).
 
-Usage:  python3 vor_check.py <library.bib> --mailto <your-email> [--only key1,key2]
+Usage:  python3 vor_check.py <library.bib> [--mailto you@example.org] [--only key1,key2]
+        (--mailto is optional: without it a placeholder address is sent, as in the other two scripts)
 Exit:   0 = no candidates · 2 = candidates found (verify + update in Zotero) · 1 = error
 """
 import argparse
@@ -47,7 +48,8 @@ def parse_bib(path):
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("bib")
-    ap.add_argument("--mailto", required=True, help="your email — Crossref etiquette")
+    ap.add_argument("--mailto", default="example@example.org",
+                    help="contact address sent to Crossref with each request (optional; a placeholder by default)")
     ap.add_argument("--only", help="comma-separated citekeys to check (default: every preprint)")
     a = ap.parse_args()
     preprints = parse_bib(a.bib)
